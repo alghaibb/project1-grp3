@@ -37,9 +37,13 @@ THEN I can access my past searches
 
 ## Screenshot
 
+Wireframe 
+
+![Image of the wireframe](./assets/images/wireframe.jpg)
+
 The below is a screenshot of the web application's appearance
 
-![Alt text](./assets/images/screenshot1.jpg)
+![Screenshot of the web applications appearance](./assets/images/screenshot1.jpg)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -90,13 +94,8 @@ N/A
 ## Tests
 
 ### Application specific:
-* Validate that the correct date displays when the page loads
-* Validate that you are presented with 9 slots where tasks can be captured (9am - 5pm) - each slot representing an hour of the working dya
-* Validate that, compared to the current time, slots in the past are grey, the current hour is red and future hours are green
-* Validate that you are able to type into the main field in each hourly slot (i.e. enter a task)
-* Validate that when you save the task for the hour, that the task remains when you refresh the page
-
-
+* Validate that the ... when 
+*
 ### Developer practice tests:
 * Validate that the application deployed at the live URL (<a href="#URL">Navigate to URL</a>)
 * Validate that the webpage loaded without errors
