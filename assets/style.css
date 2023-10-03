@@ -1,0 +1,13 @@
+* {
+    font-size: 16px;
+}
+
+/* NAVBAR SECTION */
+.search-box {
+    margin-top: 10px;
+}
+
+.search-btn:hover {
+    background-color: rgb(0, 129, 129);
+    transition: all 250ms ease;
+}
