@@ -5,6 +5,13 @@
 /* NAVBAR SECTION */
 .search-box {
     margin-top: 10px;
+    border-radius: 20px;
+    width: 600px;
+}
+
+.search-box:hover {
+    outline: 2px solid teal;
+    border-radius: 1px solid teal;
 }
 
 .search-btn:hover {
