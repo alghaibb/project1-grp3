@@ -1,0 +1,29 @@
+/* Apply box-sizing to all elements and their pseudo-elements */
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+
+/* Reset margins, padding, and font for all elements */
+* {
+    margin: 0;
+    padding: 0;
+    font: inherit;
+}
+
+/* Set color scheme for the HTML document to support dark and light modes */
+html {
+    color-scheme: dark light;
+}
+
+/* Ensure that the body covers at least the full viewport height */
+body {
+    min-height: 100vh;
+}
+
+/* Make images, pictures, SVGs, and videos responsive */
+img, picture, svg, video {
+    display: block;
+    max-width: 100%;
+}
+
+
