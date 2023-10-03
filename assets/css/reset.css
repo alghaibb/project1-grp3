@@ -1,6 +1,7 @@
 /* Apply box-sizing to all elements and their pseudo-elements */
 *, *::before, *::after {
     box-sizing: border-box;
+    
 }
 
 /* Reset margins, padding, and font for all elements */
