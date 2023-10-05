@@ -1,10 +1,5 @@
-img{height: 150px;
- margin-right: 10px;
-width: 150px;}
-.sub-heading {
-    text-align: center;
-    display: block;
-    color: red;
+* {
+    font-size: 16px;
 }
 
   
