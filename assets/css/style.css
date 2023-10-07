@@ -1,15 +1,37 @@
 /* UNIVERSAL FONT SIZE - MAHMOUD.J */
 * {
     font-size: 16px;
+    --header: rgb(63, 199, 140);
+    --heading2: rgb(98, 197, 174);
 }
+
+
+/*Search box area*/
+#search-recipe {
+  padding: 5px 5px 5px 5px;
+  margin: 20px 20px 20px 20px;
+  background-color: var (--heading2)
+
+}
+
 
 /* SEARCH BUTTON HOVER - MAHMOUD.J */
 .search-btn:hover {
   transition: all 0.5s ease;
 } 
-  
+
+/*Heading - Recipies for Disaster */
+#heading {
+  background-color: var(--header);
+  margin: 5px 5px 5px 5px;
+  padding: 50px;
+  width: 100%;
+    
+}
+
+
 /* CSS FOR TABLE - DYLAN.M */
-#customers {
+.recipe-table {
     font-family: Arial, Helvetica, sans-serif;
     border-collapse: collapse;
     width: 60%;
@@ -18,19 +40,19 @@
     margin-top: autogit;
   }
   
-  #customers td, #customers th {
+ .recipe-table td, #feature-recipe-table th {
     border: 1px solid #a19696;
     padding: 8px;
   }
   
-  #customers tr:nth-child(even){background-color: #f2f2f2;}
-  #customers tr:hover {background-color: #525050;
-color: whitesmoke;}
-   #customers td:nth-child(even) :hover{background-color: red;}
-   #customers th {
+  .recipe-table tr:nth-child(even){background-color: #f2f2f2;}
+  .recipe-table tr:hover {background-color: #525050;
+    color: whitesmoke;}
+  .recipe-table td:nth-child(even) :hover{background-color: red;}
+  .recipe-table th {
     padding-top: 12px;
     padding-bottom: 12px;
     text-align: left;
-    background-color: #04AA6D;
+    background-color: var(--header);
     color: white;
   }
