@@ -176,7 +176,7 @@ window.addEventListener('load', function () {
     }
     console.log("  Hiding 'recipe-results-table' ");  
     resultsTableEl.style.display = "none";     
-    displayRecipes();                                                            //Hy being lazy - remove this at the end
+   // displayRecipes();                                                            //Hy being lazy - remove this at the end
 });
  
 
