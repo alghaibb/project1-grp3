@@ -179,4 +179,22 @@ window.addEventListener('load', function () {
    // displayRecipes();                                                            //Hy being lazy - remove this at the end
 });
  
+// parameter the dogs
+let checkbox = document.getElementsByClassName("checkbox");
+let params = checkboxValue;
+
+if (checkbox.checked == true) {
+  params.append("health", "value");
+} else {
+  null;
+}
+console.log();
+
+
+
+
+//Add a second foo parameter.
+
+//Query string is now: 'foo=1&bar=2&foo=4'
+
 
