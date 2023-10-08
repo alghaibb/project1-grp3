@@ -182,9 +182,11 @@ window.addEventListener('load', function () {
 // parameter the dogs
 let checkbox = document.getElementsByClassName("checkbox");
 let params = checkboxValue;
+const value = document.getElementsByClassName("healthLabel")
+
 
 if (checkbox.checked == true) {
-  params.append("health", "value");
+  params.append("healthLabel", "value");
 } else {
   null;
 }
