@@ -3,6 +3,7 @@
     font-size: 16px;
     --header: rgb(63, 199, 140);
     --heading2: rgb(98, 197, 174);
+    font-family: Arial, Helvetica, sans-serif;
 }
 
 
@@ -32,9 +33,8 @@
 
 /* CSS FOR TABLE - DYLAN.M */
 .recipe-table {
-    font-family: Arial, Helvetica, sans-serif;
-    border-collapse: collapse;
-    width: 60%;
+    font-family: Arial, Helvetica, sans-serif;   
+    width: 80%;
     margin-left: auto;
     margin-right: auto;
     margin-top: autogit;
@@ -56,3 +56,4 @@
     background-color: var(--header);
     color: white;
   }
+
