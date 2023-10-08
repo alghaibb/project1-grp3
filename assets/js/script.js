@@ -100,8 +100,8 @@ function displayRecipes() {
                 recipeDetailContainerEl.appendChild(recipeLabelEl);          // Append Recipe Label to recipeDetail Container
 
                 var recipeDetailEl = document.createElement('p');           // Recipe detils - child element to recipeDetailContainer
-                recipeDetailEl.classlist = "receipt-detail";                // Add claass
-                recipeDetailEl.textContent = "Calories" + recipeArray.hits[i].recipe.calories + ", Cuisine Type: " + recipeArray.hits[i].recipe.cuisineType + ", Dish Type: " + recipeArray.hits[i].recipe.dishType + ", Meal Type: " + recipeArray.hits[i].recipe.mealType[0] + ", Time: " + recipeArray.hits[0].recipe.totalTime + ", Makes: " + recipeArray.hits[0].recipe.yield;  // Add Text
+                recipeDetailEl.classlist = "recipe-detail";                // Add claass
+                recipeDetailEl.textContent = "Calories" + recipeArray.hits[i].recipe.calories + ", Cuisine Type: " + recipeArray.hits[i].recipe.cuisineType + ", Dish Type: " + recipeArray.hits[i].recipe.dishType + ", Meal Type: " + recipeArray.hits[i].recipe.mealType[0] + ", Time: " + recipeArray.hits[0].recipe.totalTime + ", Makes: " + recipeArray.hits[i].recipe.yield;  // Add Text
                 recipeDetailContainerEl.appendChild(recipeDetailEl);        // Append Recipe Details to recipeDetaail Container
 
                 var recipeLinkEl = document.createElement('a');             // Recipe Link - child element to recipeDetailContainer
