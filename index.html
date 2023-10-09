@@ -57,39 +57,154 @@
         <!-- RECIPIE TABLE - DM -->
         <div>
             
-            <table id="recipe-table-featured" class = "recipe-table">
-                <tr>
-                    <th>Picture:</th>
-                    <th>Name:</th>
-                    <th>Flavour Profile:</th>
-                    <th>Rating:</th>
-                </tr>
-                <tr>
-                    <td> <a href="https://www.taste.com.au/recipes/bbq-haloumi-vegetable-kebabs/e8f3a8fb-958c-4185-8644-f8d1ae78bfad"> <img src="./assets/images/bbq-haloumi-and-vegetable-kebabs-90408-1.jpeg" alt="Barbcue halloumi and vegetable kebabs."></a></td>
-                    <td>Bbq, halloumi and vegetable kebabs.</td>
-                    <td> Flavour profile: Spicy, umami, savoury.</td>
-                    <td>Rating</td>
-                </tr> 
-                <tr>
-                    <td> <a href="https://www.taste.com.au/recipes/honey-mustard-chicken-vegetables-rice/8bc5a0dd-4490-4e35-aa0a-62e2a2e0176d"> <img src="./assets/images/honey-mustard-chicken-and-vegetables-with-rice-106504-1.jpeg" alt="Honey mustard chicken and vegetables with rice."</td>
-                    <td>Honey mustard chicken and vegetables with rice.</td>
-                    <td>Flavour profile: Sweet, salty, savoury.</td>
-                    <td>Rating</td>
-                </tr>
-                <tr>
-                    <td>  <a href="https://www.taste.com.au/recipes/creamy-chicken-enchiladas-recipe/tx0pdfij"> <img src="./assets/images/april21_creamy-chicken-enchiladas-taste-170173-1.jpg" alt="creamy chicken enchiladas."></td>
-                    <td>Creamy chicken enchiladas.</td>
-                    <td>Flavour profile: Spicy, salty, umami.</td>
-                    <td>Rating:</td>
-                </tr>
-                <tr>
-                    <td> <a href="https://www.taste.com.au/recipes/garlic-bread-cob-loaf-dip/no6qdkkc"> <img src="./assets/images/garlic-bread-cob-loaf-dip-142839-2.jpg" alt="Garlic chicken cob loaf." ></td>
-                    <td>Garlic bread cob loaf dip.:</td>
-                    <td>Salty, savoury, tangy.</td>
-                    <td>Rating:</td>
-                </tr>
-            </table>
+            <button 
+            class="search-btn m-2 rounded bg-teal-800 px-4 py-2 text-white hover:bg-teal-600 
+            focus:outline-none focus:ring focus:ring-teal-600">
+            <i class="fa-solid fa-magnifying-glass"></i></button>
         </div>
+    </div>
+    
+    <!-- RECIPIE TABLE - DM -->
+    <div>
+        <table id="customers">
+            <tr>
+                <th>Picture:</th>
+                <th>Name:</th>
+                <th>Flavour Profile:</th>
+                <th>Rating:</th>
+            </tr>
+            <tr>
+                <td> <a href="https://www.taste.com.au/recipes/bbq-haloumi-vegetable-kebabs/e8f3a8fb-958c-4185-8644-f8d1ae78bfad"> <img src="img\bbq-haloumi-and-vegetable-kebabs-90408-1.jpeg" alt="Barbcue halloumi and vegetable kebabs."></a></td>
+                <td>Bbq, halloumi and vegetable kebabs.</td>
+                <td> Flavour profile: Spicy, umami, savoury.</td>
+                <td>Rating</td>
+            </tr> 
+            <tr>
+                <td> <a href="https://www.taste.com.au/recipes/honey-mustard-chicken-vegetables-rice/8bc5a0dd-4490-4e35-aa0a-62e2a2e0176d"> <img src="img\honey-mustard-chicken-and-vegetables-with-rice-106504-1.jpeg" alt="Honey mustard chicken and vegetables with rice."</td>
+                <td>Honey mustard chicken and vegetables with rice.</td>
+                <td>Flavour profile: Sweet, salty, savoury.</td>
+                <td>Rating</td>
+            </tr>
+            <tr>
+                <td>  <a href="https://www.taste.com.au/recipes/creamy-chicken-enchiladas-recipe/tx0pdfij"> <img src="img\april21_creamy-chicken-enchiladas-taste-170173-1.jpg" alt="creamy chicken enchiladas."></td>
+                <td>Creamy chicken enchiladas.</td>
+                <td>Flavour profile: Spicy, salty, umami.</td>
+                <td>Rating:</td>
+            </tr>
+            <tr>
+                <td> <a href="https://www.taste.com.au/recipes/garlic-bread-cob-loaf-dip/no6qdkkc"> <img src="img\garlic-bread-cob-loaf-dip-142839-2.jpg" alt="Garlic chicken cob loaf." ></td>
+                <td>Garlic bread cob loaf dip.:</td>
+                <td>Salty, savoury, tangy.</td>
+                <td>Rating:</td>
+            </tr>
+        </table>
+    </div>
+    <div>
+      <form action="health">
+        <input class="healthLabel" type="checkbox" value="alcohol-cocktail">alcohol-cocktail
+        <input class="healthLabel" type="checkbox" value="alcohol-free">alcohol-free
+        <input class="healthLabel" type="checkbox" value="celery-free">celery-free
+        <input class="healthLabel" type="checkbox" value="crustacean-free">crustacean-free
+        <input class="healthLabel" type="checkbox" value="dairy-free">dairy-free
+        <input class="healthLabel" type="checkbox" value="DASH">DASH
+        <input class="healthLabel" type="checkbox" value="egg-free">egg-free
+        <input class="healthLabel" type="checkbox" value="fish-free">fish-free
+        <input class="healthLabel" type="checkbox" value="fodmap-free">fod-mapfree
+        <input class="healthLabel" type="checkbox" value="gluten-free">gluten-free
+        <input class="healthLabel" type="checkbox" value="immuno-supportive">immuno-supportive
+        <input class="healthLabel" type="checkbox" value="keto-friendly">keto-friendly
+        <input class="healthLabel" type="checkbox" value="kidney-friendly">kidney-friendly
+        <input class="healthLabel" type="checkbox" value="kosher">kosher
+        <input class="healthLabel" type="checkbox" value="low-fat-abs">low-fat-abs
+        <input class="healthLabel" type="checkbox" value="low-potassium">low-potassium
+        <input class="healthLabel" type="checkbox" value="low-sugar">low-sugar
+        <input class="healthLabel" type="checkbox" value="lupine-free">lupine-free
+        <input class="healthLabel" type="checkbox" value="Mediterranean">Mediterranean
+        <input class="healthLabel" type="checkbox" value="mollusk-free">mollusk-free
+        <input class="healthLabel" type="checkbox" value="mustard-free">mustard-free
+        <input class="healthLabel" type="checkbox" value="no-oil-added">no-oil-added
+        <input class="healthLabel" type="checkbox" value="paleo">paleo
+        <input class="healthLabel" type="checkbox" value="peanut-free">peanut-free
+        <input class="healthLabel" type="checkbox" value="pescatarian">pescatarian
+        <input class="healthLabel" type="checkbox" value="pork-free">pork-free
+        <input class="healthLabel" type="checkbox" value="red-meat-free">red-meat-free
+        <input class="healthLabel" type="checkbox" value="sesame-free">sesame-free
+        <input class="healthLabel" type="checkbox" value="shellfish-free">shellfish-free
+        <input class="healthLabel" type="checkbox" value="soy-free">soy-free
+        <input class="healthLabel" type="checkbox" value="sugar-conscious">sugar-conscious
+        <input class="healthLabel" type="checkbox" value="sulfite-free">sulfite-free
+        <input class="healthLabel" type="checkbox" value="tree-nut-free">tree-nut-free
+        <input class="healthLabel" type="checkbox" value="vegan">vegan
+        <input class="healthLabel" type="checkbox" value="vegetarian">vegetarian
+        <input class="healthLabel" type="checkbox" value="wheat-free"> wheat-free 
+      </form>
+    </div>
+      <form action="diet">
+      <div id="diet">
+        <input class="diet" type="checkbox" value="balanced">balanced
+        <input class="diet" type="checkbox" value="high-fiber">high-fiber
+        <input class="diet" type="checkbox" value="high-protein">high-protein
+        <input class="diet" type="checkbox" value="low-carb">low-carb
+        <input class="diet" type="checkbox" value="low-fat">low-fat
+        <input class="diet" type="checkbox" value="low-sodium">low-sodium
+      </div>
+    </form>
+    <form action="cuisineType">
+      <div id="cuisineType">
+        <input class="cuisineType" type="checkbox" value="american">american
+        <input class="cuisineType" type="checkbox" value="asian">asian
+        <input class="cuisineType" type="checkbox" value="brittish">brittish
+        <input class="cuisineType" type="checkbox" value="caribbean">caribbean
+        <input class="cuisineType" type="checkbox" value="central europe">central europe
+        <input class="cuisineType" type="checkbox" value="chinese">chinese
+        <input class="cuisineType" type="checkbox" value="eastern europe">eastern europe
+        <input class="cuisineType" type="checkbox" value="french">french
+        <input class="cuisineType" type="checkbox" value="indian">indian
+        <input class="cuisineType" type="checkbox" value="italian">italian
+        <input class="cuisineType" type="checkbox" value="japanese">japanese
+        <input class="cuisineType" type="checkbox" value="kosher">kosher
+        <input class="cuisineType" type="checkbox" value="mediterranean">mediterranean
+        <input class="cuisineType" type="checkbox" value="mexican">mexican
+        <input class="cuisineType" type="checkbox" value="middle eastern"> middle eastern
+        <input class="cuisineType" type="checkbox" value="nordic">nordic
+        <input class="cuisineType" type="checkbox" value="south american">south american
+        <input class="cuisineType" type="checkbox" value="south east asian">south east asian
+      </div>
+    </form>
+      <form action="mealType">
+      <div id="mealType">
+        <input class="mealType" type="checkbox" value="breakfast">breakfast
+        <input class="mealType" type="checkbox" value="lunch">lunch
+        <input class="mealType" type="checkbox" value="dinner">dinner
+        <input class="mealType" type="checkbox" value="snack">snack
+        <input class="mealType" type="checkbox" value="teatime">teatime
+      </div>
+    </form>
+    <form action="dishType">
+      <div id="dishType">
+        <input class="dishType" type="checkbox" value="biscuits and cookies"> biscuits and cookies
+        <input class="dishType" type="checkbox" value="bread">bread
+        <input class="dishType" type="checkbox" value="cereals">cereals
+        <input class="dishType" type="checkbox" value="condiments and sauces"> condiments and sauces
+        <input class="dishType" type="checkbox" value="desserts"> desserts
+        <input class="dishType" type="checkbox" value="drinks">drinks
+        <input class="dishType" type="checkbox" value="main course"> main course
+        <input class="dishType" type="checkbox" value="pancake">pancake
+        <input class="dishType" type="checkbox" value="preps">preps
+        <input class="dishType" type="checkbox" value="preserve">preserve
+        <input class="dishType" type="checkbox" value="salad">salad
+        <input class="dishType" type="checkbox" value="sandwiches">sandwiches
+        <input class="dishType" type="checkbox" value="side dish"> side dish
+        <input class="dishType" type="checkbox" value="soup">soup
+        <input class="dishType" type="checkbox" value="starter">starter
+        <input class="dishType" type="checkbox" value="sweets">sweets
+      </div>
+
+      <div>
+        <textarea name="Calories" id="calorieTextArea" cols="30" rows="1">Example: 100-300</textarea>
+      </div>
+        
+
 
         <footer></footer>
     </body>
