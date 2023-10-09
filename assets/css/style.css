@@ -1,4 +1,8 @@
 /* UNIVERSAL FONT SIZE - MAHMOUD.J */
+
+/* border-emerald-400 = border-color: rgb(52 211 153); */
+/* text-emerald-600 = rgb(5 150 105); */
+
 * {
     font-size: 16px;
     --header: rgb(63, 199, 140);
@@ -6,30 +10,10 @@
     font-family: Arial, Helvetica, sans-serif;
 }
 
-
-/*Search box area*/
-#search-recipe {
-  padding: 5px 5px 5px 5px;
-  margin: 20px 20px 20px 20px;
-  background-color: var (--heading2)
-
-}
-
-
 /* SEARCH BUTTON HOVER - MAHMOUD.J */
 .search-btn:hover {
   transition: all 0.5s ease;
 } 
-
-/*Heading - Recipies for Disaster */
-#heading {
-  background-color: var(--header);
-  margin: 5px 5px 5px 5px;
-  padding: 50px;
-  width: 100%;
-    
-}
-
 
 /* CSS FOR TABLE - DYLAN.M */
 .recipe-table {

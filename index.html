@@ -1,34 +1,61 @@
 <!DOCTYPE html>
 <html>
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Group 3 Project</title>
-    <link rel="stylesheet" href="./assets/reset.css">
-    <script src="https://kit.fontawesome.com/2ff847350a.js" crossorigin="anonymous"></script>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="./assets/css/style.css">
-</head>
-<body>
-    <!-- HEADER SECTION - MJ -->
-    <header>
-        <h1 class="font-bold text-gray-800 text-2xl text-center mt-5">
-            <span class="text-2xl text-center mt-5 text-teal-600 font-bold">Recipies</span> 
-            for Disaster
-        </h1>
-    </header>
-    
-    <!-- NAVBAR SECTION - MJ -->
-    <div class="navbar flex justify-center">
-        <div class="search-box flex justify-center rounded bg-white">
-            <input class="checkbox" 
-            type="search" 
-            name="search" 
-            id="search" 
-            placeholder="Search for your desired recipie" 
-            class="w-96 rounded bg-transparent px-4 py-1 text-gray-900 focus:outline-none focus:ring 
-            focus:ring-teal-600">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>Group 3 Project</title>
+        <link rel="stylesheet" href="./assets/css/reset.css">
+        <script src="https://kit.fontawesome.com/80af804818.js" crossorigin="anonymous"></script>
+        <script src="https://cdn.tailwindcss.com"></script>
+        <link rel="stylesheet" href="./assets/css/style.css">
+    </head>
+    <body>
+        <!-- HEADER SECTION - MJ -->
+        <header class = "bg-emerald-400">
+            <h1 id = "heading" class="font-bold text-emerald-900 text-4xl text-center p-10">                
+                <span class="text-4xl text-center mt-5 text-emerald-600 font-bold">Recipies</span> 
+                for Disaster
+            </h1>
+        </header>
+        
+        <!-- NAVBAR SECTION - MJ -->
+        <div id = "search-recipe" class= "justify-center p-5">
+            <div class="search-box flex justify-center rounded bg-white-200">
+                <input 
+                type="search" 
+                name="search" 
+                id="search" 
+                placeholder="Search for your desired recipe" 
+                class="w-1/2 rounded bg-transparent px-4 py-1 text-gray-900 ring focus:outline-none focus:ring 
+                focus:ring-teal-600">                
+                <button 
+                class="search-btn m-2 rounded bg-teal-800 px-4 py-2 text-white hover:bg-teal-600 
+                focus:outline-none focus:ring focus:ring-teal-600">
+
+                <i class="fa-solid fa-magnifying-glass"></i></button>
+            </div>
+        </div>
+        
+<!--Dynamic Recipe Results Table [HL]-->
+        <ul id="recipe-table-results" class = "recipe-table max-w-4xl">
+  
+ <!-- Dynamic elements that will appear are: 
+
+            element='li' class="recipe-container" 
+                    element='div' class="link-link"
+                        element='a' class="link-image"
+                        element='img' class="link-img"
+                    element='div' class='recipe-detail-container'
+                        element='h2' class='recipe-title'
+                        element='p' class='recipe-detail'
+                        element='a' class='recipe-link'
+                        element='p' class='recipe-source' 
+                        -->
+        </ul>
+
+        <!-- RECIPIE TABLE - DM -->
+        <div>
             
             <button 
             class="search-btn m-2 rounded bg-teal-800 px-4 py-2 text-white hover:bg-teal-600 
