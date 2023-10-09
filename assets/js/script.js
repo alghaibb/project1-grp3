@@ -1,28 +1,73 @@
 
-// Elements
+// Constants, variables, elements
 const searchInput = document.getElementById('search');
 const searchBtn = document.querySelector('.search-btn'); 
 const featuredTableEl = document.querySelector("#recipe-table-featured");    //Feature table element
 const resultsTableEl = document.querySelector("#recipe-table-results");     //Recipe results table element
+const recipeResultHeading1El = document.querySelector("#recipe-result-heading1")   //Recipe results heading line 1
+const recipeResultHeading2El = document.querySelector("#recipe-result-heading2")   //Recipe results heading line 2
 
 const appKey = "bd89c9d8361609dbed2adb82d1106d40";      //Edamam App Key (Mahmoud)
 const appID = "45b75717"                                //Edamam Recipe App ID
 
-//Arrays
-let recipeArray = []; // Using "let" to declare recipeArray as it will be modified later
+// Arrays
+let recipeArray = [];       // Using "let" to declare recipeArray as it will be modified later
 
 //-------------------------------------//
 //- FUNCTION - FETCH RECIPES FROM API -//
 //-------------------------------------//
-
 function fetchRecipes(searchTerm) {
     console.log("\n\n\n> fetchRecipes() Called");  
-    const recipeUrl = "https://api.edamam.com/api/recipes/v2?type=public&app_id=" + appID + "&app_key=" + appKey + "&field=uri&field=label&field=image&field=images&field=source&field=url&field=shareAs&field=yield&field=dietLabels&field=healthLabels&field=cautions&field=ingredientLines&field=ingredients&field=calories&field=glycemicIndex&field=totalCO2Emissions&field=co2EmissionsClass&field=totalWeight&field=totalTime&field=cuisineType&field=mealType&field=dishType&field=totalNutrients&field=totalDaily&field=digest&field=tags&field=externalId&q="+ searchTerm;   
-    
+
+    var recipeUrl = "https://api.edamam.com/api/recipes/v2?type=public&app_id=" + appID + "&app_key=" + appKey + "&field=uri&field=label&field=image&field=images&field=source&field=url&field=shareAs&field=yield&field=dietLabels&field=healthLabels&field=cautions&field=ingredientLines&field=ingredients&field=calories&field=glycemicIndex&field=totalCO2Emissions&field=co2EmissionsClass&field=totalWeight&field=totalTime&field=cuisineType&field=mealType&field=dishType&field=totalNutrients&field=totalDaily&field=digest&field=tags&field=externalId&q="+ searchTerm;   
+  
+    console.log(recipeUrl)
     console.log("  Fetching recipes from edamam...")
     fetch(recipeUrl)                                                                            // Fetch data from edamam using URL above
         .then(function (response) {
             console.log("  ... recipes received from Edamam.")
+            if (response.ok) {                                                                  // Check if response OK             
+                response.json().then(function (data) {                                          // Hold API response in 'data'
+                    console.log("  Checking data received:")
+                    console.log("    data.hits.length = " + data.hits.length)
+                    if (data.hits.length === 0) {                                               // Check if 'data.hits' has values. Alert if zero (data.hits is where recipes are returned in the JSON object
+                        console.log("    No recipes found - bad")
+                        alert('No recipes were found - please review your search term(s) and try again');                        
+                        return;
+                    } else {                        
+                        console.log("    Recipes found - good")
+                        console.log("  Sending recipes to local storage ('key = recipes')");                        
+                        recipeArray = data;                                                     // Store the fetched data in recipeArray 
+                        localStorage.setItem('recipes', JSON.stringify(recipeArray));           // STORING FETCHED DATA IN LOCAL STORAGE
+                        console.log("  Storing API data in global variable 'recipeArray'");
+                        console.log("    recipeArray:\n    ------------");                        
+                        console.log(recipeArray);       
+                        displayRecipes();                 
+                    }
+                });
+            } else {
+                alert('Error in recipes: ' + response.statusText);
+            }
+        })
+        .catch(function (error) {
+            alert('Unable to connect to API server');
+        });
+        return;
+}
+
+//--------------------------------------------//
+//- FUNCTION - FETCH RANDOM RECIPES FROM API -//
+//--------------------------------------------//
+function fetchRandomRecipes() {
+    console.log("\n\n\n> fetchRandomRecipes() Called");  
+
+    var recipeUrl = "https://api.edamam.com/api/recipes/v2?type=public&app_id=" + appID + "&app_key=" + appKey + "&random=true&q=undefined";
+ 
+    console.log(recipeUrl)
+    console.log("  Fetching random recipes from edamam...")
+    fetch(recipeUrl)                                                                            // Fetch data from edamam using URL above
+        .then(function (response) {
+            console.log("  ... random recipes received from Edamam.")
             if (response.ok) {                                                                  // Check if response OK             
                 response.json().then(function (data) {                                          // Hold API response in 'data'
                     console.log("  Checking data received:")
@@ -58,7 +103,7 @@ function fetchRecipes(searchTerm) {
 function displayRecipes() {
     console.log("\n\n\n> displayRecipes() Called");  
     console.log("  Hiding 'feature-recipe-table' ");  
-    featuredTableEl.style.display = "none";                                                  // hide feature-recipe-table
+    //featuredTableEl.style.display = "none";                                                  // hide feature-recipe-table
     console.log("  Show 'recipe-results-table' ");  
     resultsTableEl.style.display = "block";
     console.log("  Clearing resultsTableEl to make way for new results")         
@@ -219,7 +264,7 @@ function displayRecipes() {
     }
 };
 
-    
+
 
 //----------------------------------//
 //- LISTENER - CLICK SEARCH BUTTON -//
@@ -231,6 +276,8 @@ searchBtn.addEventListener('click', function (event) {                       // 
     const searchTerm = searchInput.value;                                    // 'searchTerm' to equal value in search field on page
     if (searchTerm) {
         console.log("  calling fetchRecipes('" + searchTerm + "')"); 
+        recipeResultHeading1El.textContent = "Search Results:";          // Set recipe results subtitle to "Search results"
+        recipeResultHeading2El.textContent = ""
         fetchRecipes(searchTerm);                                            // Call the fetchRecipes function passing through the value on searchTerm onto fetchRecipes()
     } else {
         alert('Please enter a search term.');                                // If searchTerm is falsy then present alert to user
@@ -249,7 +296,9 @@ searchInput.addEventListener('keydown', function (event) {                   // 
         event.preventDefault();                                              // Prevent page refresh
         const searchTerm = searchInput.value;                                // 'searchTerm' to equal value in search field on page
         if (searchTerm) {
-            console.log("  calling fetchRecipes('" + searchTerm + "')");  
+            console.log("  calling fetchRecipes('" + searchTerm + "')");
+            recipeResultHeading1El.textContent = "Search Results:";          // Set recipe results subtitle to "Search results"
+            recipeResultHeading2El.textContent = ""
             fetchRecipes(searchTerm);                                        // Call the fetchRecipes function passing through the value on searchTerm onto fetchRecipes()
         } else {
             alert('Please enter a search term.');                            // If searchTerm is falsy then present alert to user
@@ -257,24 +306,31 @@ searchInput.addEventListener('keydown', function (event) {                   // 
     }
 });
 
-
 //--------------------------------------------------------------//
 //- LISTENER - PAGE LOAD - RETRIEVE RECIPES FROM LOCAL STORAGE -//
 //--------------------------------------------------------------//
 
-window.addEventListener('load', function () {
+window.addEventListener('load', function () {                                               // Event listener that triggers on page load
     console.log("\n\n\n! Page load triggered");      
-    const savedRecipes = localStorage.getItem('recipes');
-    if (savedRecipes) {
-        recipeArray = JSON.parse(savedRecipes);
-        
+    const savedRecipes = localStorage.getItem('recipes');                                   // retrieve dat fro local storage ('key = recipes') - store as savedRecipes
+    if (savedRecipes) {                                                                     // If savedRecipes is not null or undefined, then
+        recipeArray = JSON.parse(savedRecipes);                                             // convert to JSON object and store as recipeArray
         console.log("  Recipes retrieved from local storage ('key = recipes'):");
-        console.log("    recipeArray:\n    ------------")
-        console.log(recipeArray);
-    }
-    console.log("  Hiding 'recipe-results-table' ");  
-    resultsTableEl.style.display = "none";     
-   displayRecipes();                                                            //Hy being lazy - remove this at the end
+        console.log("    recipeArray:\n    ------------");
+        console.log(recipeArray);                               
+        console.log("  Welcome back! Retrieving recipes from last time")
+        recipeResultHeading1El.textContent = "Welcome back! It's lovely to see you again!"          // Set recipe results subtitle to "Welcome back" message
+        recipeResultHeading2El.textContent = "Here was your last search:"                           // Set recipe results subtitle to "Welcome back" message
+        displayRecipes();                                                                   // Run displayRecipes() to display them 
+        return;
+    } else {                                                                                // else if savedRecipes is null or undefined (i.e. no local storage)
+        console.log("  savedRecipes null or undefined");                                
+        console.log("  Hello and Welcome! Fetching random recipes")                         
+        recipeResultHeading1El.textContent = "Hello and Welcome to our page!"                               // Set recipe results subtitle to "New visitor" message
+        recipeResultHeading2El.textContent = "Here are some recipes to get you started!"    // Set recipe results subtitle to "New visitor" message
+        fetchRandomRecipes();
+        return;
+    };                                                     
 });
 
 // DROPDOWN MENU FILTERS 
