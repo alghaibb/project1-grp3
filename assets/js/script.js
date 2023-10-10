@@ -20,7 +20,7 @@ let recipeArray = [];                                                           
 //- FUNCTION - ASSESS CUISINE TYPE FILTERS -//
 //------------------------------------------//
 function assessCuisine() {
-    console.log("\n\n\n> assessFilters() Called");  
+    console.log("\n\n\n> assessCuisine() Called");  
     console.log("  Clearing the cuisineURL to build afresh")
     cuisineURL = "";                    //clear cuisineURL so that it can be rebuilt from a clean slate
     console.log("  Assessing cuisine checkboxes")
@@ -35,9 +35,9 @@ function assessCuisine() {
     };
     console.log ("  URL to append to API fetch = " + cuisineURL);
     console.log ("  Calling fetchRecipes() function");
+    console.log (searchTerm)
     fetchRecipes();                                        
 }
-
 
 
 //-------------------------------------//
@@ -297,9 +297,9 @@ function displayRecipes() {
 searchBtn.addEventListener('click', function (event) {                       // Listens for event where user clicks on button (with magnifying glass)
     console.log("\n\n\n! Search button click triggered");      
     event.preventDefault();                                                  // Prevent page refresh
-    const searchTerm = searchInput.value;                                    // 'searchTerm' to equal value in search field on page
+    searchTerm = searchInput.value;                                    // 'searchTerm' to equal value in search field on page
     if (searchTerm) {
-        console.log("  calling fetchRecipes('" + searchTerm + "')"); 
+        console.log("  calling assessCuisine()"); 
         recipeResultHeading1El.textContent = "Search Results:";          // Set recipe results subtitle to "Search results"
         recipeResultHeading2El.textContent = ""
         assessCuisine();       
