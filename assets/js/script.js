@@ -382,13 +382,3 @@ const toggleSubDir = (check) => {
     // fetchRecipes()
 };
 
-//---------------------//
-//- GOOGLE TRANSLATE  -//
-//---------------------//
-
-function googleTranslateElementInit(){
-    new google.translate.TranslateElement(
-        {pageLanguage: 'en'},
-        'google_translate_element'
-    );
-}
