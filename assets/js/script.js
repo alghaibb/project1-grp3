@@ -146,7 +146,7 @@ function displayRecipes() {
         resultsTableEl.appendChild(recipeContainerEl);                                                                                  // Append recipeContinerEl to resultsTableEl
 
                 var linkContainerEl = document.createElement('div');                                                                        // Create link container - one of 2 child element to recipe container
-                linkContainerEl.classList.add("link-container", "p-3", "flex", "justify-center", "items-center", "md:w-1/2", "sm:w-full", "sm:justify-center", "sm:items-center" );                                                    // Add class (tailwind style)
+                linkContainerEl.classList.add("link-container", "p-3", "flex", "justify-center", "items-center", "w-full", "md:w-1/2");                                                    // Add class (tailwind style)
                 recipeContainerEl.appendChild(linkContainerEl);                                                                             // Append link container to recipe container
 
                         var linkEl = document.createElement ('a');                                                                              // Create link element                
@@ -161,7 +161,7 @@ function displayRecipes() {
                                 linkEl.appendChild(imageEl);                                                                                        // Append link to image
 
                 var recipeDetailContainerEl = document.createElement('div')                                                                 // Create Recipe detail container - one of 2 child elements to recipe container 
-                recipeDetailContainerEl.classList.add ("recipe-detail-container", "flex-col", "p-3", "sm:w-full", "md:w-1/2");                  // Add class (tailwind style)         
+                recipeDetailContainerEl.classList.add ("recipe-detail-container", "flex-col", "p-3", "w-full", "md:w-1/2");                  // Add class (tailwind style)         
                 recipeContainerEl.appendChild(recipeDetailContainerEl);                                                                     // Append Recipe Detaail Container to Recipe Container
 
                         var recipeLabelEl = document.createElement('h2');                                                                       // Recipe label (heading) - child element to recipeDetailContainer
