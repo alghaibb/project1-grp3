@@ -9,6 +9,7 @@ const recipeResultHeading2El = document.querySelector("#recipe-result-heading2")
 
 const appKey = "bd89c9d8361609dbed2adb82d1106d40";      //Edamam App Key (Mahmoud)
 const appID = "45b75717"                                //Edamam Recipe App ID
+var searchTerm = ""                                     //user entered search Term
 
 // Arrays
 let recipeArray = [];       // Using "let" to declare recipeArray as it will be modified later
@@ -16,7 +17,7 @@ let recipeArray = [];       // Using "let" to declare recipeArray as it will be 
 //-------------------------------------//
 //- FUNCTION - FETCH RECIPES FROM API -//
 //-------------------------------------//
-function fetchRecipes(searchTerm) {
+function fetchRecipes() {
     console.log("\n\n\n> fetchRecipes() Called");  
 
     var recipeUrl = "https://api.edamam.com/api/recipes/v2?type=public&app_id=" + appID + "&app_key=" + appKey + "&field=uri&field=label&field=image&field=images&field=source&field=url&field=shareAs&field=yield&field=dietLabels&field=healthLabels&field=cautions&field=ingredientLines&field=ingredients&field=calories&field=glycemicIndex&field=totalCO2Emissions&field=co2EmissionsClass&field=totalWeight&field=totalTime&field=cuisineType&field=mealType&field=dishType&field=totalNutrients&field=totalDaily&field=digest&field=tags&field=externalId&q="+ searchTerm;   
@@ -102,8 +103,7 @@ function fetchRandomRecipes() {
 
 function displayRecipes() {
     console.log("\n\n\n> displayRecipes() Called");  
-    console.log("  Hiding 'feature-recipe-table' ");  
-    //featuredTableEl.style.display = "none";                                                  // hide feature-recipe-table
+    console.log("  Hiding 'feature-recipe-table' ");     
     console.log("  Show 'recipe-results-table' ");  
     resultsTableEl.style.display = "block";
     console.log("  Clearing resultsTableEl to make way for new results")         
@@ -116,7 +116,7 @@ function displayRecipes() {
         };
 
         var recipeContainerEl = document.createElement('li');                                                                           // Create recipe container (li) - this will be appended to main 'ul" container (resutlsTableEl)
-        recipeContainerEl.classList.add ("recipe-container", "border-8", "rounded-3xl", "flex", "flex-wrap", "m-5", "border-emerald-400");                     // Add class (tailwind style)
+        recipeContainerEl.classList.add ("recipe-container", "border-8", "rounded-3xl", "flex", "flex-wrap", "m-5", "border-emerald-400", "flex-auto");                     // Add class (tailwind style)
         resultsTableEl.appendChild(recipeContainerEl);                                                                                  // Append recipeContinerEl to resultsTableEl
 
                 var linkContainerEl = document.createElement('div');                                                                        // Create link container - one of 2 child element to recipe container
@@ -227,7 +227,7 @@ function displayRecipes() {
                         recipeDetailContainerEl.appendChild(caloriesContainerEl);
                                     
                                 var caloriesIconEl = document.createElement('i')
-                                caloriesIconEl.classList.add("fa-solid", "fa-fire", "fa-xl", "flex", "justify-start", "items-center", "p-2", "w-24"); // Add class - fontawesome icon + tailwind CSS
+                                caloriesIconEl.classList.add("fa-solid", "fa-calculator", "fa-xl", "flex", "justify-start", "items-center", "p-2", "w-24"); // Add class - fontawesome icon + tailwind CSS
                                 caloriesContainerEl.appendChild(caloriesIconEl);
 
                                 var caloriesEl = document.createElement('p');                                                                       
@@ -264,8 +264,6 @@ function displayRecipes() {
     }
 };
 
-
-
 //----------------------------------//
 //- LISTENER - CLICK SEARCH BUTTON -//
 //----------------------------------//
@@ -278,12 +276,12 @@ searchBtn.addEventListener('click', function (event) {                       // 
         console.log("  calling fetchRecipes('" + searchTerm + "')"); 
         recipeResultHeading1El.textContent = "Search Results:";          // Set recipe results subtitle to "Search results"
         recipeResultHeading2El.textContent = ""
-        fetchRecipes(searchTerm);                                            // Call the fetchRecipes function passing through the value on searchTerm onto fetchRecipes()
+        //assessFilters();
+        fetchRecipes();                                            // Call the fetchRecipes function passing through the value on searchTerm onto fetchRecipes()
     } else {
         alert('Please enter a search term.');                                // If searchTerm is falsy then present alert to user
     }    
 });
-
 
 //----------------------------//
 //- LISTENER - ENTER KEYDOWN -//
@@ -294,12 +292,13 @@ searchInput.addEventListener('keydown', function (event) {                   // 
     if (event.key === 'Enter') {                                             // If the keydown event was triggered by the "Enter" key
         console.log("  'Enter' detected");  
         event.preventDefault();                                              // Prevent page refresh
-        const searchTerm = searchInput.value;                                // 'searchTerm' to equal value in search field on page
+        searchTerm = searchInput.value;                                      // 'searchTerm' to equal value in search field on page
         if (searchTerm) {
             console.log("  calling fetchRecipes('" + searchTerm + "')");
             recipeResultHeading1El.textContent = "Search Results:";          // Set recipe results subtitle to "Search results"
             recipeResultHeading2El.textContent = ""
-            fetchRecipes(searchTerm);                                        // Call the fetchRecipes function passing through the value on searchTerm onto fetchRecipes()
+            //assessFilters();
+            fetchRecipes();                                        // Call the fetchRecipes function passing through the value on searchTerm onto fetchRecipes()
         } else {
             alert('Please enter a search term.');                            // If searchTerm is falsy then present alert to user
         }
@@ -334,6 +333,13 @@ window.addEventListener('load', function () {                                   
 });
 
 // DROPDOWN MENU FILTERS 
+// assessFilters()
+    // Look at the filters selected by the user
+    // Assign values to variables that match query paramters
+    // e.g. if user selects cuisine = 'french'
+        // want var "cuisine" to be "&cuisineType=french"
+
+
 let dropdown = document.getElementById("dropdown");
 let open1 = document.getElementById("open");
 let close1 = document.getElementById("close");
@@ -373,7 +379,12 @@ const toggleSubDir = (check) => {
             subList1.classList.add("hidden");
             break;
     }
+    // fetchRecipes()
 };
+
+//---------------------//
+//- GOOGLE TRANSLATE  -//
+//---------------------//
 
 function googleTranslateElementInit(){
     new google.translate.TranslateElement(
