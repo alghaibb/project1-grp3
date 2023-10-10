@@ -2,17 +2,43 @@
 // Constants, variables, elements
 const searchInput = document.getElementById('search');
 const searchBtn = document.querySelector('.search-btn'); 
-const featuredTableEl = document.querySelector("#recipe-table-featured");    //Feature table element
-const resultsTableEl = document.querySelector("#recipe-table-results");     //Recipe results table element
+const featuredTableEl = document.querySelector("#recipe-table-featured");          //Feature table element
+const resultsTableEl = document.querySelector("#recipe-table-results");            //Recipe results table element
 const recipeResultHeading1El = document.querySelector("#recipe-result-heading1")   //Recipe results heading line 1
 const recipeResultHeading2El = document.querySelector("#recipe-result-heading2")   //Recipe results heading line 2
 
-const appKey = "bd89c9d8361609dbed2adb82d1106d40";      //Edamam App Key (Mahmoud)
-const appID = "45b75717"                                //Edamam Recipe App ID
-var searchTerm = ""                                     //user entered search Term
+const appKey = "bd89c9d8361609dbed2adb82d1106d40";                                 //Edamam App Key (Mahmoud)
+const appID = "45b75717"                                                           //Edamam Recipe App ID
+var searchTerm = ""                                                                //user entered search Term
 
-// Arrays
-let recipeArray = [];       // Using "let" to declare recipeArray as it will be modified later
+let cuisineTypeEl = document.getElementsByName("cuisineType");                     // Targets all checkboxes on cuisineType
+var cuisineURL = "";
+
+let recipeArray = [];                                                              // Core array used to store and retrieve recipes.
+
+//------------------------------------------//
+//- FUNCTION - ASSESS CUISINE TYPE FILTERS -//
+//------------------------------------------//
+function assessCuisine() {
+    console.log("\n\n\n> assessFilters() Called");  
+    console.log("  Clearing the cuisineURL to build afresh")
+    cuisineURL = "";                    //clear cuisineURL so that it can be rebuilt from a clean slate
+    console.log("  Assessing cuisine checkboxes")
+// For loop assess all check boxes under cuisineTypeEl for Checked/Not Checked status and build the cuisineURL to append to main API request
+    for (let i=0; i < cuisineTypeEl.length; i++) {
+        if(cuisineTypeEl[i].checked === true) {
+            console.log ("    - " + cuisineTypeEl[i].id + " - Checked")
+            cuisineURL += cuisineTypeEl[i].value;            //if status is "checked" then grab the element "value" and append to cuisineURL (this appears in the apiURL)
+        } else {
+            //console.log (cuisineTypeEl[i].id + " - NOT Checked")
+        }
+    };
+    console.log ("  URL to append to API fetch = " + cuisineURL);
+    console.log ("  Calling fetchRecipes() function");
+    fetchRecipes();                                        
+}
+
+
 
 //-------------------------------------//
 //- FUNCTION - FETCH RECIPES FROM API -//
@@ -20,7 +46,7 @@ let recipeArray = [];       // Using "let" to declare recipeArray as it will be 
 function fetchRecipes() {
     console.log("\n\n\n> fetchRecipes() Called");  
 
-    var recipeUrl = "https://api.edamam.com/api/recipes/v2?type=public&app_id=" + appID + "&app_key=" + appKey + "&field=uri&field=label&field=image&field=images&field=source&field=url&field=shareAs&field=yield&field=dietLabels&field=healthLabels&field=cautions&field=ingredientLines&field=ingredients&field=calories&field=glycemicIndex&field=totalCO2Emissions&field=co2EmissionsClass&field=totalWeight&field=totalTime&field=cuisineType&field=mealType&field=dishType&field=totalNutrients&field=totalDaily&field=digest&field=tags&field=externalId&q="+ searchTerm;   
+    var recipeUrl = "https://api.edamam.com/api/recipes/v2?type=public&app_id=" + appID + "&app_key=" + appKey + "&field=uri&field=label&field=image&field=images&field=source&field=url&field=shareAs&field=yield&field=dietLabels&field=healthLabels&field=cautions&field=ingredientLines&field=ingredients&field=calories&field=glycemicIndex&field=totalCO2Emissions&field=co2EmissionsClass&field=totalWeight&field=totalTime&field=cuisineType&field=mealType&field=dishType&field=totalNutrients&field=totalDaily&field=digest&field=tags&field=externalId&q="+ searchTerm + cuisineURL;   
   
     console.log(recipeUrl)
     console.log("  Fetching recipes from edamam...")
@@ -276,8 +302,7 @@ searchBtn.addEventListener('click', function (event) {                       // 
         console.log("  calling fetchRecipes('" + searchTerm + "')"); 
         recipeResultHeading1El.textContent = "Search Results:";          // Set recipe results subtitle to "Search results"
         recipeResultHeading2El.textContent = ""
-        //assessFilters();
-        fetchRecipes();                                            // Call the fetchRecipes function passing through the value on searchTerm onto fetchRecipes()
+        assessCuisine();       
     } else {
         alert('Please enter a search term.');                                // If searchTerm is falsy then present alert to user
     }    
@@ -297,8 +322,7 @@ searchInput.addEventListener('keydown', function (event) {                   // 
             console.log("  calling fetchRecipes('" + searchTerm + "')");
             recipeResultHeading1El.textContent = "Search Results:";          // Set recipe results subtitle to "Search results"
             recipeResultHeading2El.textContent = ""
-            //assessFilters();
-            fetchRecipes();                                        // Call the fetchRecipes function passing through the value on searchTerm onto fetchRecipes()
+            assessCuisine();         
         } else {
             alert('Please enter a search term.');                            // If searchTerm is falsy then present alert to user
         }
@@ -317,14 +341,14 @@ window.addEventListener('load', function () {                                   
         console.log("  Recipes retrieved from local storage ('key = recipes'):");
         console.log("    recipeArray:\n    ------------");
         console.log(recipeArray);                               
-        console.log("  Welcome back! Retrieving recipes from last time")
+        console.log("  RETURNING VISITOR: Welcome back! Retrieving recipes from last time")
         recipeResultHeading1El.textContent = "Welcome back! It's lovely to see you again!"          // Set recipe results subtitle to "Welcome back" message
         recipeResultHeading2El.textContent = "Here was your last search:"                           // Set recipe results subtitle to "Welcome back" message
         displayRecipes();                                                                   // Run displayRecipes() to display them 
         return;
     } else {                                                                                // else if savedRecipes is null or undefined (i.e. no local storage)
         console.log("  savedRecipes null or undefined");                                
-        console.log("  Hello and Welcome! Fetching random recipes")                         
+        console.log("  NEW VISITOR: Hello and Welcome! Fetching random recipes")                         
         recipeResultHeading1El.textContent = "Hello and Welcome to our page!"                               // Set recipe results subtitle to "New visitor" message
         recipeResultHeading2El.textContent = "Here are some recipes to get you started!"    // Set recipe results subtitle to "New visitor" message
         fetchRandomRecipes();
@@ -332,12 +356,6 @@ window.addEventListener('load', function () {                                   
     };                                                     
 });
 
-// DROPDOWN MENU FILTERS 
-// assessFilters()
-    // Look at the filters selected by the user
-    // Assign values to variables that match query paramters
-    // e.g. if user selects cuisine = 'french'
-        // want var "cuisine" to be "&cuisineType=french"
 
 
 let dropdown = document.getElementById("dropdown");
@@ -379,7 +397,6 @@ const toggleSubDir = (check) => {
             subList1.classList.add("hidden");
             break;
     }
-    // fetchRecipes()
 };
 
 //---------------------//
