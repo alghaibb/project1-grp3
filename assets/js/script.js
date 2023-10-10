@@ -379,7 +379,6 @@ const toggleSubDir = (check) => {
             subList1.classList.add("hidden");
             break;
     }
-    // fetchRecipes()
 };
 
 //---------------------//
