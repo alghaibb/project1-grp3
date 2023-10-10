@@ -22,13 +22,13 @@ let recipeArray = [];                                                           
 function assessCuisine() {
     console.log("\n\n\n> assessCuisine() Called");  
     console.log("  Clearing the cuisineURL to build afresh")
-    cuisineURL = "";                    //clear cuisineURL so that it can be rebuilt from a clean slate
+    cuisineURL = "";                                             //clear cuisineURL so that it can be rebuilt from a clean slate
     console.log("  Assessing cuisine checkboxes")
 // For loop assess all check boxes under cuisineTypeEl for Checked/Not Checked status and build the cuisineURL to append to main API request
     for (let i=0; i < cuisineTypeEl.length; i++) {
         if(cuisineTypeEl[i].checked === true) {
             console.log ("    - " + cuisineTypeEl[i].id + " - Checked")
-            cuisineURL += cuisineTypeEl[i].value;            //if status is "checked" then grab the element "value" and append to cuisineURL (this appears in the apiURL)
+            cuisineURL += cuisineTypeEl[i].value;                //if status is "checked" then grab the element "value" and append to cuisineURL (this appears in the apiURL)
         } else {
             //console.log (cuisineTypeEl[i].id + " - NOT Checked")
         }
@@ -137,36 +137,37 @@ function displayRecipes() {
     for (let i = 0; i < recipeArray.hits.length; i++) {
     
         if (i === (recipeArray.hits.length-1)) {
-            console.log("  All recipes rendered")                                                                                       // Console.log a message to indicate all recipes rendered
+            console.log("  All recipes rendered")                                                                                                         // Console.log a message to indicate all recipes rendered
         };
 
-        var recipeContainerEl = document.createElement('li');                                                                           // Create recipe container (li) - this will be appended to main 'ul" container (resutlsTableEl)
-        recipeContainerEl.classList.add ("recipe-container", "border-8", "rounded-3xl", "flex", "flex-wrap", "m-5", "border-emerald-400", "flex-auto");                     // Add class (tailwind style)
-        resultsTableEl.appendChild(recipeContainerEl);                                                                                  // Append recipeContinerEl to resultsTableEl
+        var recipeContainerEl = document.createElement('li');                                                                                             // Create recipe container (li) - this will be appended to main 'ul" container (resutlsTableEl)
+        recipeContainerEl.classList.add ("recipe-container", "border-8", "rounded-3xl", "flex", "flex-wrap", "m-5", "border-emerald-400");                // Add class (tailwind style)
+        resultsTableEl.appendChild(recipeContainerEl);                                                                                                    // Append recipeContinerEl to resultsTableEl
 
-                var linkContainerEl = document.createElement('div');                                                                        // Create link container - one of 2 child element to recipe container
-                linkContainerEl.classList.add("link-container", "p-3", "flex", "justify-center", "items-center", "w-full", "md:w-1/2");                                                    // Add class (tailwind style)
-                recipeContainerEl.appendChild(linkContainerEl);                                                                             // Append link container to recipe container
+                var linkContainerEl = document.createElement('div');                                                                                      // Create link container - one of 2 child element to recipe container
+                linkContainerEl.classList.add("link-container", "p-3", "flex", "justify-center", "items-center", "w-full", "md:w-1/2");                   // Add class (tailwind style)
+                recipeContainerEl.appendChild(linkContainerEl);                                                                                           // Append link container to recipe container
 
-                        var linkEl = document.createElement ('a');                                                                              // Create link element                
-                        linkEl.classList.add ("link-link");                                                                     // Add class (tailwind style)
-                        linkEl.href = recipeArray.hits[i].recipe.url;                                                                           // Define link
-                        linkContainerEl.appendChild(linkEl);                                                                                    // Append link element to link contaainer
+                        var linkEl = document.createElement ('a');                                                                                        // Create link element                
+                        linkEl.classList.add ("link-link");                                                                                               // Add class (tailwind style)
+                        linkEl.href = recipeArray.hits[i].recipe.url;                                                                                     // Define link
+                        linkEl.target = "_blank";                                                                                                         // Open Link on new tab
+                        linkContainerEl.appendChild(linkEl);                                                                                              // Append link element to link contaainer
                                         
-                                var imageEl = document.createElement ('img')                                                                        // Create image element
-                                imageEl.classList.add("link-img")                                                                                   // Add class (tailwind style)
-                                imageEl.src = recipeArray.hits[i].recipe.images.REGULAR.url;                                                        // Define image source
-                                imageEl.alt = "image and link for " + recipeArray.hits[i].recipe.label;                                             // Alt text for accessibility
-                                linkEl.appendChild(imageEl);                                                                                        // Append link to image
+                                var imageEl = document.createElement ('img')                                                                              // Create image element
+                                imageEl.classList.add("link-img")                                                                                         // Add class (tailwind style)
+                                imageEl.src = recipeArray.hits[i].recipe.images.REGULAR.url;                                                              // Define image source
+                                imageEl.alt = "image and link for " + recipeArray.hits[i].recipe.label;                                                   // Alt text for accessibility
+                                linkEl.appendChild(imageEl);                                                                                              // Append link to image
 
-                var recipeDetailContainerEl = document.createElement('div')                                                                 // Create Recipe detail container - one of 2 child elements to recipe container 
-                recipeDetailContainerEl.classList.add ("recipe-detail-container", "flex-col", "p-3", "w-full", "md:w-1/2");                  // Add class (tailwind style)         
-                recipeContainerEl.appendChild(recipeDetailContainerEl);                                                                     // Append Recipe Detaail Container to Recipe Container
+                var recipeDetailContainerEl = document.createElement('div')                                                                               // Create Recipe detail container - one of 2 child elements to recipe container 
+                recipeDetailContainerEl.classList.add ("recipe-detail-container", "flex-col", "p-3", "w-full", "md:w-1/2");                               // Add class (tailwind style)         
+                recipeContainerEl.appendChild(recipeDetailContainerEl);                                                                                   // Append Recipe Detaail Container to Recipe Container
 
-                        var recipeLabelEl = document.createElement('h2');                                                                       // Recipe label (heading) - child element to recipeDetailContainer
-                        recipeLabelEl.classList.add("recipe-title", "text-2xl", "font-bold", "mb-5", "text-emerald-600", "text-center");           // Add class (tailwind style)
-                        recipeLabelEl.textContent = recipeArray.hits[i].recipe.label;                                                           // Add recipe title
-                        recipeDetailContainerEl.appendChild(recipeLabelEl);                                                                     // Append Recipe Label to recipeDetail Container
+                        var recipeLabelEl = document.createElement('h2');                                                                                 // Recipe label (heading) - child element to recipeDetailContainer
+                        recipeLabelEl.classList.add("recipe-title", "text-2xl", "font-bold", "mb-5", "text-emerald-600", "text-center");                  // Add class (tailwind style)
+                        recipeLabelEl.textContent = recipeArray.hits[i].recipe.label;                                                                     // Add recipe title
+                        recipeDetailContainerEl.appendChild(recipeLabelEl);                                                                               // Append Recipe Label to recipeDetail Container
 
                         var dishTypeContainerEl = document.createElement('div')
                         dishTypeContainerEl.classList.add("dish-type-container", "flex");
@@ -177,11 +178,11 @@ function displayRecipes() {
                                 dishTypeContainerEl.appendChild(dishTypeIconEl);
 
                                 var dishTypeEl = document.createElement('p');                                                                       
-                                dishTypeEl.classList.add("dish-type", "text-lg", "flex", "align-middle", "p-2");                                    // Add class (tailwind style)
+                                dishTypeEl.classList.add("dish-type", "text-lg", "flex", "align-middle", "p-2");                                          // Add class (tailwind style)
                                 let dishType = recipeArray.hits[i].recipe.dishType[0];
                                 let dishCapital = dishType.charAt(0).toUpperCase() + dishType.slice(1);
                                 dishTypeEl.textContent = dishCapital;
-                                dishTypeContainerEl.appendChild(dishTypeEl);                                                                        // Append DishType to dishType Container
+                                dishTypeContainerEl.appendChild(dishTypeEl);                                                                              // Append DishType to dishType Container
 
                         var cuisineTypeContainerEl = document.createElement('div')
                         cuisineTypeContainerEl.classList.add("cuisine-type-container", "flex");
@@ -208,14 +209,14 @@ function displayRecipes() {
                                 mealTypeContainerEl.appendChild(mealTypeIconEl);
 
                                 var mealTypeEl = document.createElement('p');                                                                       
-                                mealTypeEl.classList.add("meal-type", "text-lg", "flex", "align-middle", "p-2");                                    // Add class (tailwind style)
+                                mealTypeEl.classList.add("meal-type", "text-lg", "flex", "align-middle", "p-2");                                          // Add class (tailwind style)
                                 let mealType = recipeArray.hits[i].recipe.mealType[0];
                                 let mealCapital = mealType.charAt(0).toUpperCase() + mealType.slice(1);
                                 mealTypeEl.textContent = mealCapital;
-                                mealTypeContainerEl.appendChild(mealTypeEl);                                                                        // Append DishType to dishType Container
+                                mealTypeContainerEl.appendChild(mealTypeEl);                                                                              // Append DishType to dishType Container
 
                         let totalTime = recipeArray.hits[i].recipe.totalTime;                                         
-                        if (parseInt(totalTime) === 0) {}                                                   // If totalTime = 0 then do not dynamically create and append time (leave blank) else create and append elements
+                        if (parseInt(totalTime) === 0) {}                                                                                                 // If totalTime = 0 then do not dynamically create and append time (leave blank) else create and append elements
                         else {
 
                         var totalTimeContainerEl = document.createElement('div')
@@ -223,11 +224,11 @@ function displayRecipes() {
                         recipeDetailContainerEl.appendChild(totalTimeContainerEl);
                                     
                                 var totalTimeIconEl = document.createElement('i')
-                                totalTimeIconEl.classList.add("fa-solid", "fa-clock", "fa-xl", "flex", "justify-start", "items-center", "p-2", "w-24");        // Add class - fontawesome icon + tailwind CSS
+                                totalTimeIconEl.classList.add("fa-solid", "fa-clock", "fa-xl", "flex", "justify-start", "items-center", "p-2", "w-24");   // Add class - fontawesome icon + tailwind CSS
                                 totalTimeContainerEl.appendChild(totalTimeIconEl);
 
                                 var totalTimeEl = document.createElement('p');                                                                       
-                                totalTimeEl.classList.add("total-time", "text-lg", "flex", "align-middle", "p-2");                                    // Add class (tailwind style)
+                                totalTimeEl.classList.add("total-time", "text-lg", "flex", "align-middle", "p-2");                                        // Add class (tailwind style)
                                 let totalTime = recipeArray.hits[i].recipe.totalTime;
                                 totalTimeEl.textContent = totalTime + " minutes";
                                 totalTimeContainerEl.appendChild(totalTimeEl);
@@ -238,14 +239,14 @@ function displayRecipes() {
                         recipeDetailContainerEl.appendChild(servesContainerEl);
                                     
                                 var servesIconEl = document.createElement('i')
-                                servesIconEl.classList.add("fa-solid", "fa-users", "fa-xl", "flex", "justify-start", "items-center", "p-2", "w-24"); // Add class - fontawesome icon + tailwind CSS
+                                servesIconEl.classList.add("fa-solid", "fa-users", "fa-xl", "flex", "justify-start", "items-center", "p-2", "w-24");     // Add class - fontawesome icon + tailwind CSS
                                 servesContainerEl.appendChild(servesIconEl);
 
                                 var servesEl = document.createElement('p');                                                                       
-                                servesEl.classList.add("serves-type", "text-lg", "flex", "align-middle", "p-2");                                    // Add class (tailwind style)
+                                servesEl.classList.add("serves-type", "text-lg", "flex", "align-middle", "p-2");                                         // Add class (tailwind style)
                                 let serves = recipeArray.hits[i].recipe.yield;
                                 servesEl.textContent = "Serves " + serves;
-                                servesContainerEl.appendChild(servesEl);                                                                        // Append DishType to dishType Container
+                                servesContainerEl.appendChild(servesEl);                                                                                 // Append DishType to dishType Container
 
                         var caloriesContainerEl = document.createElement('div')
                         caloriesContainerEl.classList.add("calories-container", "flex");
@@ -256,10 +257,10 @@ function displayRecipes() {
                                 caloriesContainerEl.appendChild(caloriesIconEl);
 
                                 var caloriesEl = document.createElement('p');                                                                       
-                                caloriesEl.classList.add("calories", "text-lg", "flex", "align-middle", "p-2");                                    // Add class (tailwind style)
+                                caloriesEl.classList.add("calories", "text-lg", "flex", "align-middle", "p-2");                                          // Add class (tailwind style)
                                 let calories = Math.round(parseInt(recipeArray.hits[i].recipe.calories));
                                 caloriesEl.textContent = calories + " calories";
-                                caloriesContainerEl.appendChild(caloriesEl);                                                                        // Append DishType to dishType Container
+                                caloriesContainerEl.appendChild(caloriesEl);                                                                             // Append DishType to dishType Container
         
 
                         var recipeLinkContainerEl = document.createElement('div')
@@ -267,15 +268,15 @@ function displayRecipes() {
                         recipeDetailContainerEl.appendChild(recipeLinkContainerEl);
 
                                 var recipeLinkEl = document.createElement('a');                                                                         // Recipe Link - child element to recipeDetailContainer
-                                recipeLinkEl.classList.add ("recipe-link", "text-lg", "mt-5");                                                                             // Add class (tailwind style)
+                                recipeLinkEl.classList.add ("recipe-link", "text-lg", "mt-5");                                                          // Add class (tailwind style)
                                 recipeLinkEl.href = recipeArray.hits[i].recipe.url;                                                                     // Add Recipe Link
                                 recipeLinkEl.title = "recipeArray.hits[i].recipe.url";                                                                  // Add link text
                                 recipeLinkEl.target = "_blank";
                                 recipeLinkEl.style.color = "blue";                                                                                      // Style link text
-                                recipeLinkContainerEl.appendChild(recipeLinkEl);                                                                      // Append Recipe Link to recipeDetailContainer
+                                recipeLinkContainerEl.appendChild(recipeLinkEl);                                                                        // Append Recipe Link to recipeDetailContainer
 
-                                        var recipeLinkText = document.createTextNode('View recipe details (opens in new window)');                                                     // Create element that displays link text (This becomes to link "display as")
-                                        recipeLinkEl.appendChild(recipeLinkText);                                                                           // Append link display as to link
+                                        var recipeLinkText = document.createTextNode('View recipe details (opens in new window)');                      // Create element that displays link text (This becomes to link "display as")
+                                        recipeLinkEl.appendChild(recipeLinkText);                                                                       // Append link display as to link
         
                         var recipeSourceContainerEl = document.createElement('div')
                         recipeSourceContainerEl.classList.add("recipe-source-container", "flex", "justify-end");
@@ -296,10 +297,10 @@ function displayRecipes() {
 searchBtn.addEventListener('click', function (event) {                       // Listens for event where user clicks on button (with magnifying glass)
     console.log("\n\n\n! Search button click triggered");      
     event.preventDefault();                                                  // Prevent page refresh
-    searchTerm = searchInput.value;                                    // 'searchTerm' to equal value in search field on page
+    searchTerm = searchInput.value;                                          // 'searchTerm' to equal value in search field on page
     if (searchTerm) {
         console.log("  calling assessCuisine()"); 
-        recipeResultHeading1El.textContent = "Search Results:";          // Set recipe results subtitle to "Search results"
+        recipeResultHeading1El.textContent = "Search Results:";              // Set recipe results subtitle to "Search results"
         recipeResultHeading2El.textContent = ""
         assessCuisine();       
     } else {
@@ -341,14 +342,14 @@ window.addEventListener('load', function () {                                   
         console.log("  Recipes retrieved from local storage ('key = recipes'):");
         console.log("    recipeArray:\n    ------------");
         console.log(recipeArray);                               
-        recipeResultHeading1El.textContent = "Welcome back! It's lovely to see you again!"          // Set recipe results subtitle to "Welcome back" message
-        recipeResultHeading2El.textContent = "Here was your last search:"                           // Set recipe results subtitle to "Welcome back" message
+        recipeResultHeading1El.textContent = "Welcome back! It's lovely to see you again!"  // Set recipe results subtitle to "Welcome back" message
+        recipeResultHeading2El.textContent = "Here was your last search:"                   // Set recipe results subtitle to "Welcome back" message
         displayRecipes();                                                                   // Run displayRecipes() to display them 
         return;
     } else {                                                                                // else if savedRecipes is null or undefined (i.e. no local storage)
         console.log("  savedRecipes null or undefined");                                
         console.log("  NEW VISITOR: Hello and Welcome! Fetching random recipes")                         
-        recipeResultHeading1El.textContent = "Hello and Welcome to our page!"                               // Set recipe results subtitle to "New visitor" message
+        recipeResultHeading1El.textContent = "Hello and Welcome to our page!"               // Set recipe results subtitle to "New visitor" message
         recipeResultHeading2El.textContent = "Here are some recipes to get you started!"    // Set recipe results subtitle to "New visitor" message
         fetchRandomRecipes();
         return;
