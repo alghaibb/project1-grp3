@@ -4,7 +4,7 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
-        <title>Group 3 Project</title>
+        <title>Food Haven</title>
         <link rel="stylesheet" href="./assets/css/reset.css">
         <script src="https://kit.fontawesome.com/80af804818.js" crossorigin="anonymous"></script>
         <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.8.1/flowbite.min.css" rel="stylesheet" />
@@ -13,7 +13,7 @@
     </head>
     <body>
         <!-- HEADER SECTION - MJ -->
-        <header class = "bg-emerald-400 inline-flex w-full justify-center">
+        <header class = "bg-emerald-600 inline-flex w-full justify-center">
             <div class= "pt-5 absolute top-0 left-5" id="google_translate_element">
 
             </div>
@@ -105,12 +105,29 @@
                   <label for="checkbox-italian" class="w-full ml-2 text-sm font-medium text-gray-900 rounded dark:text-gray-300">Italian</label>
                 </div>
               </li>
+              <li>
+                <div class="flex items-center p-2 rounded hover:bg-gray-100 dark:hover:bg-gray-600">
+                  <input id="checkbox-middleeastern" name = "cuisineType" type="checkbox" value="&cuisineType=Middle Eastern" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500">
+                  <label for="checkbox-middleeastern" class="w-full ml-2 text-sm font-medium text-gray-900 rounded dark:text-gray-300">Middle Eastern</label>
+                </div>
+              </li>
             </ul>
         </div>
 
         <!--Recipe Results Heading -->
         <div id = "recipe-result-heading1" class = "mt-5 text-center text-2xl text-emerald-800"></div>
         <div id = "recipe-result-heading2" class = "text-center text-2xl text-emerald-800"></div>     
+        
+        <!-- NEXT PAGE BUTTON -->
+        <div class="max-w-4xl m-auto text-right pr-10">
+          <button type="button" class="col-end-5 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+              Next Page
+              <svg class="w-3.5 h-3.5 ml-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
+                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 5h12m0 0L9 1m4 4L9 9"/>
+              </svg>
+          </button>
+        </div>
+        
         <!--Dynamic Recipe Results Table [HL]-->
         <ul id="recipe-table-results" class = "recipe-table max-w-4xl m-auto">
   
@@ -127,14 +144,24 @@
                         -->
         </ul>
 
-        <footer class = "bg-emerald-400 w-full justify-center">                
+        <!-- NEXT PAGE BUTTON -->
+        <div class="max-w-4xl m-auto text-right pr-10 pb-5">
+          <button type="button" class="col-end-5 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+              Next Page
+              <svg class="w-3.5 h-3.5 ml-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
+                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 5h12m0 0L9 1m4 4L9 9"/>
+              </svg>
+          </button>
+        </div>
+
+        <footer class = "bg-emerald-600 w-full justify-center">                
             <h3 id = "heading" class=" text-emerald-900 text-2xl text-center py-5">                
-                <i class="fa-solid fa-fire fa-lg text-red-800"></i>
-                <i class="fa-solid fa-fire fa-lg text-red-800"></i>    
-                <span class="text-2xl text-center mt-5 text-red-800 font-bold">Slow-roasted</span> 
-                by Group 3
-                <i class="fa-solid fa-fire fa-lg text-red-800"></i>
-                <i class="fa-solid fa-fire fa-lg text-red-800"></i>
+                <i class="fa-solid fa-fire fa-lg" style="color: #ff9500;"></i>
+                <i class="fa-solid fa-fire fa-lg" style="color: #ff9500;"></i>    
+                <span class="text-2xl text-center mt-5 font-bold" style="color: #ffa01b;">Slow-Roasted</span> 
+                <span class="text-2xl text-center font-bold text-gray-800">by Group 3</span>
+                <i class="fa-solid fa-fire fa-lg" style="color: #ff9500;"></i>
+                <i class="fa-solid fa-fire fa-lg" style="color: #ff9500;"></i>
             </h3>
             <p class = "text-xl text-center py-5">Find us at GitHub:
                     <a href="https://github.com/hybee234" target = "_blank" class = "text-blue-800 text-xl">Hybee234</a>,
