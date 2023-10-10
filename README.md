@@ -94,8 +94,31 @@ N/A
 ## Tests
 
 ### Application specific:
-* Validate that the ... when 
-*
+
+#### Page Load
+* Validate that when the page loads for a new user (with no local storage) that the page presents with a "welcome" message and suggests random recipes
+* Validate that when the page loads for a returning new user (with local storage) that the page presents with a "welcome back" message and renders the recipes last searched
+
+#### Search field 
+* Validate that the user can initiate a search for recipes by pressing the "enter" button
+* Validate that the user can initiate a search for recipes by clicking or tapping on the "magnifying glass icon"
+* Validate that the page generates a modal alert if the search field is blank
+
+#### Search Results
+* Validate that a searching for recipes successfully populates results on the webpage
+* Validate that, if zero results are return, a modal alert appears "No recipes were found - please review your search term(s) and try again(test this by searching for random text "e.g. asdfasdf" ).
+* Validate that, total time for a recipe is not displayed if the data is not available
+* Validate that the recipe results subtitle updates to "Search Results:"
+* Validate that clicking on a recipe link opens it on a new browser tab 
+
+#### Google translate
+* Validte that Google Translate feature works (swap languages to translate the page)
+
+#### Footer
+* Validate that all links to group 3 team member github profiles work
+* Validate that the link to Edamam website works
+
+
 ### Developer practice tests:
 * Validate that the application deployed at the live URL (<a href="#URL">Navigate to URL</a>)
 * Validate that the webpage loaded without errors
