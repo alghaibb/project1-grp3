@@ -129,7 +129,6 @@ function fetchRandomRecipes() {
 
 function displayRecipes() {
     console.log("\n\n\n> displayRecipes() Called");  
-    console.log("  Hiding 'feature-recipe-table' ");     
     console.log("  Show 'recipe-results-table' ");  
     resultsTableEl.style.display = "block";
     console.log("  Clearing resultsTableEl to make way for new results")         
@@ -338,10 +337,10 @@ window.addEventListener('load', function () {                                   
     const savedRecipes = localStorage.getItem('recipes');                                   // retrieve dat fro local storage ('key = recipes') - store as savedRecipes
     if (savedRecipes) {                                                                     // If savedRecipes is not null or undefined, then
         recipeArray = JSON.parse(savedRecipes);                                             // convert to JSON object and store as recipeArray
+        console.log("  RETURNING VISITOR: Welcome back! Retrieving recipes from last time")
         console.log("  Recipes retrieved from local storage ('key = recipes'):");
         console.log("    recipeArray:\n    ------------");
         console.log(recipeArray);                               
-        console.log("  RETURNING VISITOR: Welcome back! Retrieving recipes from last time")
         recipeResultHeading1El.textContent = "Welcome back! It's lovely to see you again!"          // Set recipe results subtitle to "Welcome back" message
         recipeResultHeading2El.textContent = "Here was your last search:"                           // Set recipe results subtitle to "Welcome back" message
         displayRecipes();                                                                   // Run displayRecipes() to display them 
