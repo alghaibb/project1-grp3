@@ -28,7 +28,7 @@ function assessCuisine() {
     for (let i=0; i < cuisineTypeEl.length; i++) {
         if(cuisineTypeEl[i].checked === true) {
             console.log ("    - " + cuisineTypeEl[i].id + " - Checked")
-            cuisineURL += cuisineTypeEl[i].value;                //if status is "checked" then grab the element "value" and append to cuisineURL (this appears in the apiURL)
+            cuisineURL += cuisineTypeEl[i].value;                //if status is "checked" then grab the element "value" and append to cuisineURL (this appears in the apiURL)            
         } else {
             //console.log (cuisineTypeEl[i].id + " - NOT Checked")
         }

@@ -86,7 +86,7 @@ N/A
 * Recipe will hide the total time if data is not available from Edamam
 * Next page functionality to retrieve the next 20 recipes
 * Next page functionality also has error handlign if there are no more recipes to Warmomg(error handling functionality)    <---
-* Dark mode functionality <------
+* Dark mode functionality
 * Cuisine filter that restrict results that are returned from Edamam (multi-select box)
 * Google Translate embedded into the page
 
