@@ -39,7 +39,7 @@ THEN I can access my past searches
 
 Wireframe 
 
-![Image of the wireframe](./assets/images/wireframe.jpg)
+![Image of the wireframe](./assets/images/wireframe.png)
 
 The below is a screenshot of the web application's appearance
 
@@ -57,10 +57,7 @@ Cloning the repo is the only step required.
 ## Usage
 <a name="URL"></a>
 Link to deployed website is found here:
- []
-
-  
-index.html, script.js and style.css files can be opened in Visual Studio Code
+* https://alghaibb.github.io/project1-grp3/
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
  
@@ -81,7 +78,21 @@ N/A
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 ## Features
+* Search feature activates when pressing enter key or click on magnifying glass
+* New visitors presented with random recipes to start
+* Returning visitors presented with the last set of recipes they searched for
+* Subtitle dynamically updates from "Welcome" to "Welcome back" and "Search Results"
+* Responsive design down to 375 pixels
+* Recipe will hide the total time if data is not available from Edamam
+* Next page functionality to retrieve the next 20 recipes
+* Next page functionality also has error handlign if there are no more recipes to Warmomg(error handling functionality)    <---
+* Dark mode functionality <------
+* Cuisine filter that restrict results that are returned from Edamam (multi-select box)
+* Google Translate embedded into the page
 
+
+* Links to Edamam website
+* Links to GitHub pages for members of group 3
 
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
