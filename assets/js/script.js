@@ -4,8 +4,8 @@ const searchInput = document.getElementById('search');
 const searchBtn = document.querySelector('.search-btn'); 
 const featuredTableEl = document.querySelector("#recipe-table-featured");          //Feature table element
 const resultsTableEl = document.querySelector("#recipe-table-results");            //Recipe results table element
-const recipeResultHeading1El = document.querySelector("#recipe-result-heading1")   //Recipe results heading line 1
-const recipeResultHeading2El = document.querySelector("#recipe-result-heading2")   //Recipe results heading line 2
+const recipeResultHeading1El = document.querySelector("#recipe-result-heading1");   //Recipe results heading line 1
+const recipeResultHeading2El = document.querySelector("#recipe-result-heading2");   //Recipe results heading line 2
 
 const appKey = "bd89c9d8361609dbed2adb82d1106d40";                                 //Edamam App Key (Mahmoud)
 const appID = "45b75717"                                                           //Edamam Recipe App ID
@@ -165,7 +165,7 @@ function displayRecipes() {
                 recipeContainerEl.appendChild(recipeDetailContainerEl);                                                                                   // Append Recipe Detaail Container to Recipe Container
 
                         var recipeLabelEl = document.createElement('h2');                                                                                 // Recipe label (heading) - child element to recipeDetailContainer
-                        recipeLabelEl.classList.add("recipe-title", "text-2xl", "font-bold", "mb-5", "text-emerald-600", "text-center");                  // Add class (tailwind style)
+                        recipeLabelEl.classList.add("recipe-title", "text-2xl", "font-bold", "mb-5", "text-emerald-600", "text-center", "dark:text-emerald-300");                  // Add class (tailwind style)
                         recipeLabelEl.textContent = recipeArray.hits[i].recipe.label;                                                                     // Add recipe title
                         recipeDetailContainerEl.appendChild(recipeLabelEl);                                                                               // Append Recipe Label to recipeDetail Container
 
@@ -268,11 +268,11 @@ function displayRecipes() {
                         recipeDetailContainerEl.appendChild(recipeLinkContainerEl);
 
                                 var recipeLinkEl = document.createElement('a');                                                                         // Recipe Link - child element to recipeDetailContainer
-                                recipeLinkEl.classList.add ("recipe-link", "text-lg", "mt-5");                                                          // Add class (tailwind style)
+                                recipeLinkEl.classList.add ("recipe-link", "text-lg", "mt-5", "dark:text-sky-400", "text-blue-700", "hover:underline");                                                          // Add class (tailwind style)
                                 recipeLinkEl.href = recipeArray.hits[i].recipe.url;                                                                     // Add Recipe Link
                                 recipeLinkEl.title = "recipeArray.hits[i].recipe.url";                                                                  // Add link text
                                 recipeLinkEl.target = "_blank";
-                                recipeLinkEl.style.color = "blue";                                                                                      // Style link text
+                                // recipeLinkEl.style.color = "blue";                                                                                      // Style link text
                                 recipeLinkContainerEl.appendChild(recipeLinkEl);                                                                        // Append Recipe Link to recipeDetailContainer
 
                                         var recipeLinkText = document.createTextNode('View recipe details (opens in new window)');                      // Create element that displays link text (This becomes to link "display as")
@@ -355,6 +355,61 @@ window.addEventListener('load', function () {                                   
         return;
     };                                                     
 });
+
+//----------------------------------------------------------------//
+//  - TO HANDLE OS PREF FOR LIGHT OR DARK MODE & MANUAL SWITCH -//
+//----------------------------------------------------------------//
+
+// SUN & MOON MODE VARS
+const sunIcon = document.querySelector(".sun");
+const moonIcon = document.querySelector(".moon");
+
+// THEME VARS
+const userTheme = localStorage.getItem("theme");
+const systemTheme = window.matchMedia("(prefers-color-scheme: dark)").matches;
+
+// TOGGLING THE ICONS
+const iconToggle = () => {
+    moonIcon.classList.toggle("display-none");
+    sunIcon.classList.toggle("display-none");
+};
+
+// THEME CHECK
+const themeCheck = () => {
+    if (userTheme ===  "dark" || (!userTheme && systemTheme)) {
+        document.documentElement.classList.add("dark");
+        moonIcon.classList.add("display-none");
+        return;
+    }
+    sunIcon.classList.add("display-none")
+};
+
+// MANUAL THEME SWITCH
+const themeSwitch = () => {
+    if (document.documentElement.classList.contains("dark")) {
+        document.documentElement.classList.remove("dark");
+        localStorage.setItem("theme", "light");
+        iconToggle();
+        return;
+    }
+    document.documentElement.classList.add("dark");
+    localStorage.setItem("theme", "dark");
+    iconToggle();
+};
+
+// CALL THEME SWITCH ON CLICK
+sunIcon.addEventListener("click", () => {
+    console.log("Switched to light mode")
+    themeSwitch();
+});
+
+moonIcon.addEventListener("click", () => {
+    console.log("Switched to dark mode")
+    themeSwitch();
+});
+
+// THEME CHECK ON LOAD
+themeCheck();
 
 //---------------------//
 //- GOOGLE TRANSLATE  -//
