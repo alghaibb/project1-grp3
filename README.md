@@ -39,7 +39,7 @@ THEN I can access my past searches
 
 Wireframe 
 
-![Image of the wireframe](./assets/images/wireframe.jpg)
+![Image of the wireframe](./assets/images/wireframe.png)
 
 The below is a screenshot of the web application's appearance
 
