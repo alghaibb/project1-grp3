@@ -12,7 +12,7 @@ const appID = "45b75717"                                                        
 var searchTerm = ""                                                                //user entered search Term
 
 let cuisineTypeEl = document.getElementsByName("cuisineType");                     // Targets all checkboxes on cuisineType
-var cuisineURL = "";
+var cuisineURL = "";                                                               //variable for cuisine url thats empty
 
 let recipeArray = [];                                                              // Core array used to store and retrieve recipes.
 
@@ -81,6 +81,75 @@ function fetchRecipes() {
         });
         return;
 }
+
+
+
+//--------------------------------------------//
+//- Next page button -//
+//--------------------------------------------//
+
+document.getElementsByClassName('nextPageBtn')
+ document.addEventListener('click', function(event) { 
+    if (!recipeArray._links.next) {
+        console.log("There isn't a next page");
+    }
+        else {                     
+        console.log("Next page button engaged.");                              
+        event.preventDefault();                                                     
+        console.log(recipeArray._links.next.href);                                 
+        console.log ("Next page URL stored in 'nextPageURL'");                
+        nextPageURL = recipeArray._links.next.href;                                
+        fetchNextPage();
+    
+        
+        
+      
+    }})
+
+    
+    //-------------------------------------//
+    //- FUNCTION - FETCH NEXT PAGE FROM API -//
+    //-------------------------------------//
+    function fetchNextPage() {
+        console.log("\n\n\n> fetchNextPage() Called");                               // fetch next page called console log
+    
+       var recipeUrl = nextPageURL                                                   //assigns the value of recipe url to nextPageUrl
+      
+        console.log(recipeUrl)                                                       // value of recipie url logged to console log
+        console.log("  Fetching recipes from edamam...")                             //console logs message fetching recipies from edamam
+        fetch(recipeUrl)                                                                            // Fetch data from edamam using URL above
+            .then(function (response) {                                                             
+                console.log("  ... recipes received from Edamam.")
+                if (response.ok) {                                                                  // Check if response OK             
+                    response.json().then(function (data) {                                          // Hold API response in 'data'
+                        console.log("  Checking data received:")
+                        console.log("    data.hits.length = " + data.hits.length)
+                        if (data.hits.length === 0) {                                               // Check if 'data.hits' has values. Alert if zero (data.hits is where recipes are returned in the JSON object
+                            console.log("    No recipes found - bad")                               //if no data back, no recipies found. console log.
+                            alert('No recipes were found - please review your search term(s) and try again');              //alert pop up please review search terms
+                            return;
+                        } else {                        
+                            console.log("    Recipes found - good")
+                            console.log("  Sending recipes to local storage ('key = recipes')");                        
+                            recipeArray = data;                                                     // Store the fetched data in recipeArray 
+                            localStorage.setItem('recipes', JSON.stringify(recipeArray));           // STORING FETCHED DATA IN LOCAL STORAGE
+                            console.log("  Storing API data in global variable 'recipeArray'");
+                            console.log("    recipeArray:\n    ------------");                        
+                            console.log(recipeArray);       
+                            displayRecipes();                 
+                        }
+                    });
+                } else {
+                    alert('Error in recipes: ' + response.statusText);
+                }
+            })
+            .catch(function (error) {
+                alert('Unable to connect to API server');
+            });
+            return;
+    }
+
+
 
 //--------------------------------------------//
 //- FUNCTION - FETCH RANDOM RECIPES FROM API -//
