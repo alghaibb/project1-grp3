@@ -1,9 +1,9 @@
-/* Media query to hide #google_translate_element on screens with width less than 600px */
+/* Media query to hide #google_translate_element on screens with width less than 600px
 @media (max-width: 600px) {
     #google_translate_element {
         display: none;
     }
 }
 
-
+ */
 
