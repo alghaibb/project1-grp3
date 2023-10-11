@@ -2,6 +2,9 @@
 @tailwind components; /* This injects Tailwind's component classes and any component classes registered by plugins. */
 @tailwind utilities; /* This injects Tailwind's utility classes and any utility classes registered by plugins. */
 
+.display-none {
+  @apply hidden;
+}
 
 /* UNIVERSAL FONT SIZE - MAHMOUD.J */
 
@@ -13,5 +16,5 @@
 /* SEARCH BUTTON HOVER - MAHMOUD.J */
 .search-btn:hover {
   transition: all 0.5s ease;
-} 
+}
 
