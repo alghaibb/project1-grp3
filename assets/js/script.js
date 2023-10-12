@@ -10,15 +10,17 @@ const nextPageBtnEl = document.getElementsByName("nextPageBtn");                
 
 const appKey = "bd89c9d8361609dbed2adb82d1106d40";                                  //Edamam App Key (Mahmoud)
 const appID = "45b75717"                                                            //Edamam Recipe App ID
+
+var modalEl =  document.getElementById('modal');                                    //Modal window
 var searchTerm = ""                                                                 //user entered search Term
 
-let cuisineTypeEl = document.getElementsByName("cuisineType");                      // Targets all checkboxes on cuisineType
+let cuisineTypeEl = document.getElementsByName("cuisineType");                      //Targets all checkboxes on cuisineType
 var cuisineURL = "";                                                                //variable for cuisine url thats empty
 
-var nextPageURL = "";                                                               // API for the next page
-var recipeAPI_URL = "";                                                             // API used to fetch data from Edamam
+var nextPageURL = "";                                                               //API for the next page
+var recipeAPI_URL = "";                                                             //API used to fetch data from Edamam
 
-let recipeArray = [];                                                               // Core array used to store and retrieve recipes.
+let recipeArray = [];                                                               //Core array used to store and retrieve recipes.
 
 //------------------------------------------//
 //- FUNCTION - ASSESS CUISINE TYPE FILTERS -//
@@ -276,8 +278,12 @@ searchBtn.addEventListener('click', function (event) {                       // 
         recipeResultHeading1El.textContent = "Search Results:";              // Set recipe results subtitle to "Search results"
         recipeResultHeading2El.textContent = ""
         assessCuisine();       
-    } else {
-        alert('Please enter a search term.');                                // If searchTerm is falsy then present alert to user
+    } else {                                                                 //if search field is empty them present modal
+        console.log("  Search field empty - presenting modal alert")
+        modalEl.classList.remove("hidden");
+        modalEl.classList.add("flex");            
+        modalEl.setAttribute("aria-model","true");
+        modalEl.setAttribute("role","dialog");
     }    
 });
 
@@ -296,8 +302,12 @@ searchInput.addEventListener('keydown', function (event) {                   // 
             recipeResultHeading1El.textContent = "Search Results:";          // Set recipe results subtitle to "Search results"
             recipeResultHeading2El.textContent = ""
             assessCuisine();         
-        } else {
-            alert('Please enter a search term.');                            // If searchTerm is falsy then present alert to user
+        } else {                                                             //if search field is empty them present modal 
+            console.log("  Search field empty - presenting modal alert")
+            modalEl.classList.remove("hidden");
+            modalEl.classList.add("flex");            
+            modalEl.setAttribute("aria-model","true");
+            modalEl.setAttribute("role","dialog");
         }
     }
 });
