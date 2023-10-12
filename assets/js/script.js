@@ -89,7 +89,7 @@ function fetchRecipes() {
                 modalEl.setAttribute("aria-model","true");
                 modalEl.setAttribute("role","dialog");
                 document.getElementById('modalTitle').innerHTML = "Error in recipes";
-                document.getElementById('modalLineOne').innerHTML = "There was an error in the response from Edam server. " + response.statusText;
+                document.getElementById('modalLineOne').innerHTML = "There was an error in the response from server. " + response.statusText;
                 document.getElementById('modalLineTwo').innerHTML = "Please check your search terms and try again"
             }
         })
