@@ -4,12 +4,21 @@
 
 ## Description
 
+Project1-grp3 and is hosted on GitHub. It contains the code for Project One by Group 3. The purpose of our application, is a recipies search engine.
+It can filter by multiple cuisine types and requires a key word in the search engine. It was built simply to cater to a wide range of audiences all over the world.
+The project is a web application that allows users to search for recipes based on word search, filters, stores the previous search to local storage,
+to then be displayed on the next visit to the website and content on the page can be translated to over 100 languages.
+
+The repository contains an index.html file, CSS, and JavaScript code required to run the application.
 
 ## User Story
 
 ```
 GIVEN I am wanting to decide on a meal to cook
 I WANT to be able to quickly and easily find a recipe
+I WANT to be able to choose from multiple filters
+I WANT to be able to choose from multiple languages to display my recipies
+I WANT to easily load the previous search
 SO THAT I can prepare a meal I would enjoy
 
 ```
@@ -19,10 +28,13 @@ SO THAT I can prepare a meal I would enjoy
 
 ```
 WHEN I load the page
-THEN I want to be able to search for a recipe
+THEN I want to be able to search for a recipe by keywords
 
 WHEN search results for recipes are shown
 THEN a summary of information relating to the recipe is presented to the user - serves, prep time, rating, cook time
+
+WHEN i search for a recipie i have the option to translate into my preffered language
+
 
 WHEN a recipe is clicked
 THEN the user is taken to a recipe page that details cooking steps, ingredients
@@ -51,6 +63,10 @@ The below is a screenshot of the web application's appearance
 
 Cloning the repo is the only step required.
 
+Clone this repository to your local machine.
+
+https://github.com/alghaibb/project1-grp3.git
+
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 
@@ -59,17 +75,33 @@ Cloning the repo is the only step required.
 Link to deployed website is found here:
 * https://alghaibb.github.io/project1-grp3/
 
+-Open the application in your web browser.
+-Translate to prefered language if required.
+-Enter multiple filters as required.
+-Enter your desired keywords you have on hand in the search bar.
+-Click the “Search” button.
+-Browse through the list of recipes that match your search criteria.
+-Click on a recipe to view its details.
+-Upon next arrival your previous search will load.
+
+index.html, script.js and style.css files can be opened in Visual Studio Code
+
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
  
 
 ## Credits
-Othneildrew - for the example on linking back to the top of the readme page!
+CONTRIBUTOR_ALGHAIBB Moudi
+CONTRIBUTOR_HYBEE234
+CONTRIBUTOR_T-P15
+CONTRIBUTOR_DYL124
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 ## License
 
-Please refer to the LICENSE in the repo.
+This project is licensed under the MIT License.
+
+
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 ## Badges
@@ -85,7 +117,7 @@ N/A
 * Responsive design down to 375 pixels
 * Recipe will hide the total time if data is not available from Edamam
 * Next page functionality to retrieve the next 20 recipes
-* Next page functionality also has error handlign if there are no more recipes to Warmomg(error handling functionality)    <---
+* Next page buttons will be hidden if there are no further pages to navigate to.
 * Dark mode functionality
 * Cuisine filter that restrict results that are returned from Edamam (multi-select box)
 * Google Translate embedded into the page
