@@ -460,7 +460,7 @@ function findHeroImages(){
           console.log(imageArray)
           var i= (Math.floor(Math.random()*imageArray.photos.length))
           console.log(i)
-          var img = imageArray.photos[i].src.large
+          var img = imageArray.photos[i].src.large2x
           var imgInput = JSON.stringify(img)
           console.log(imgInput)
             var bg = document.getElementById("backg-img")
