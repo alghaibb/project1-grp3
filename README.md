@@ -1,6 +1,6 @@
 <a name="readme-top"></a>
 
-# project1-grp3
+# Food Haven - A recipe finder 
 
 ## Description
 
@@ -53,9 +53,9 @@ Wireframe
 
 ![Image of the wireframe](./assets/images/wireframe.png)
 
-The below is a screenshot of the web application's appearance
+The below is a screenshot gif of the web application's appearance and some of its features
 
-![Screenshot of the web applications appearance](./assets/images/screenshot1.jpg)
+![Screenshot of the web applications](https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExZHNmbHZocHR2M2dybW92dmllajJtcWp4bWllc3ZvNnpoN2ZrejNlbyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/uQtXwJPh5VsVRwfVG3/giphy.gif)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -69,27 +69,33 @@ https://github.com/alghaibb/project1-grp3.git
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
+## Technologies Used
+- HTML
+- CSS
+- JavaScript
+- Tailwind CSS
+
 
 ## Usage
 <a name="URL"></a>
 Link to deployed website is found here:
 * https://alghaibb.github.io/project1-grp3/
 
--Open the application in your web browser.
--Translate to prefered language if required.
--Enter multiple filters as required.
--Enter your desired keywords you have on hand in the search bar.
--Click the “Search” button.
--Browse through the list of recipes that match your search criteria.
--Click on a recipe to view its details.
--Upon next arrival your previous search will load.
+- Open the application in your web browser.
+- Translate to prefered language if required.
+- Enter multiple filters as required.
+- Enter your desired keywords you have on hand in the search bar.
+- Click the “Search” button.
+- Browse through the list of recipes that match your search criteria.
+- Click on a recipe to view its details.
+- Upon next arrival your previous search will load.
 
 index.html, script.js and style.css files can be opened in Visual Studio Code
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
  
 
-## Credits
+## Contributors
 CONTRIBUTOR_ALGHAIBB Moudi
 CONTRIBUTOR_HYBEE234
 CONTRIBUTOR_T-P15
