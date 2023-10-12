@@ -39,10 +39,11 @@
 
         </header>
 
+        <div id="backg-img" class="bg-repeat bg-center">
         <!-- NAVBAR SECTION - MJ -->
         <div id = "search-recipe" class= "justify-center p-5">
             <div class="search-box flex justify-center rounded bg-white-200 ">
-                <input type="search" name="search" id="search" placeholder="Search here..." class="w-1/2 rounded bg-transparent px-4 py-1 text-gray-900 focus:ring focus:outline-none focus:ring focus:ring-teal-600 dark:text-white transition duration-300 ease-out hover:ease-in">                
+                <input type="search" name="search" id="search" placeholder="Search here..." class="w-1/2 rounded bg-white px-4 py-1 text-gray-900 focus:ring focus:outline-none focus:ring focus:ring-teal-600 dark:text-white transition duration-300 ease-out hover:ease-in">                
                 
                 <!-- SEARCH BUTTON -->
                 <button 
@@ -156,9 +157,10 @@
         </div>
 
         <!--Recipe Results Heading -->
+        <div class="border-8 rounded-3xl  m-5 border-emerald-400 bg-white">
         <div id = "recipe-result-heading1" class = "mt-5 text-center text-2xl text-emerald-800 dark:text-emerald-300"></div>
         <div id = "recipe-result-heading2" class = "text-center text-2xl text-emerald-800 dark:text-emerald-300"></div>     
-        
+      </div>
         <!-- NEXT PAGE BUTTON -->
         <div class="max-w-4xl m-auto justify-end px-10 flex pb-5">
           <button type="button" 
@@ -241,7 +243,7 @@
     </div>
 </div>
 <!-- Model end -->
-
+</div>
 
         <footer class = "bg-emerald-600 w-full justify-center">                
             <h3 id = "heading" class=" text-emerald-900 text-xl text-center pt-5 pb-2">                
@@ -264,6 +266,11 @@
     </body>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.8.1/flowbite.min.js"></script>
+    <script
+       src="https://code.jquery.com/jquery-3.7.1.min.js"
+       integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
+       crossorigin="anonymous">
+    </script>
     <script src="./assets/js/script.js"></script>
     <script src= "https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 </html>
