@@ -64,7 +64,13 @@ function fetchRecipes() {
                     console.log("    data.hits.length = " + data.hits.length)
                     if (data.hits.length === 0) {                                               // Check if 'data.hits' has values. Alert if zero (data.hits is where recipes are returned in the JSON object
                         console.log("    No recipes found - bad")
-                        alert('No recipes were found - please review your search term(s) and try again');                        
+                        modalEl.classList.remove("hidden");
+                modalEl.classList.add("flex");            
+                modalEl.setAttribute("aria-model","true");
+                modalEl.setAttribute("role","dialog");
+                document.getElementById('modalTitle').innerHTML = "No recipes were found";
+                document.getElementById('modalLineOne').innerHTML = "Please review your search terms";
+                document.getElementById('modalLineTwo').innerHTML = "Please try again later"                                       
                         return;
                     } else {                        
                         console.log("    Recipes found - good")
@@ -78,11 +84,23 @@ function fetchRecipes() {
                     }
                 });
             } else {
-                alert('Error in recipes: ' + response.statusText);
+                modalEl.classList.remove("hidden");
+                modalEl.classList.add("flex");            
+                modalEl.setAttribute("aria-model","true");
+                modalEl.setAttribute("role","dialog");
+                document.getElementById('modalTitle').innerHTML = "Error in recipies";
+                document.getElementById('modalLineOne').innerHTML = "Sorry servers down" + response.statusText;
+                document.getElementById('modalLineTwo').innerHTML = "Please try again later"
             }
         })
         .catch(function (error) {
-            alert('Unable to connect to API server');
+            modalEl.classList.remove("hidden");
+            modalEl.classList.add("flex");            
+            modalEl.setAttribute("aria-model","true");
+            modalEl.setAttribute("role","dialog");
+            document.getElementById('modalTitle').innerHTML = "Server error";
+            document.getElementById('modalLineOne').innerHTML = "Sorry servers down";
+            document.getElementById('modalLineTwo').innerHTML = "Please try again later"
         });
         return;
 }
@@ -286,6 +304,9 @@ searchBtn.addEventListener('click', function (event) {                       // 
         modalEl.classList.add("flex");            
         modalEl.setAttribute("aria-model","true");
         modalEl.setAttribute("role","dialog");
+        document.getElementById('modalTitle').innerHTML = "Search field empty";
+        document.getElementById('modalLineOne').innerHTML = "Please enter a search";
+        document.getElementById('modalLineTwo').innerHTML = "And try again";
     }    
 });
 
@@ -310,6 +331,9 @@ searchInput.addEventListener('keydown', function (event) {                   // 
             modalEl.classList.add("flex");            
             modalEl.setAttribute("aria-model","true");
             modalEl.setAttribute("role","dialog");
+            document.getElementById('modalTitle').innerHTML = "Search field empty";
+                document.getElementById('modalLineOne').innerHTML = "Please enter a search";
+                document.getElementById('modalLineTwo').innerHTML = "And try again"
         }
     }
 });
