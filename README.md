@@ -49,11 +49,11 @@ THEN I can access my past searches
 
 Wireframe 
 
-![Image of the wireframe](./assets/images/wireframe.png)
+![Image of the wireframe](./assets/images/Wireframe.png)
 
 The below is a screenshot gif of the web application's appearance and some of its features
 
-![Screenshot of the web applications](https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExZHNmbHZocHR2M2dybW92dmllajJtcWp4bWllc3ZvNnpoN2ZrejNlbyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/uQtXwJPh5VsVRwfVG3/giphy.gif)
+![Screenshot of the web applications](https://media.giphy.com/media/uQtXwJPh5VsVRwfVG3/giphy-downsized.gif)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
