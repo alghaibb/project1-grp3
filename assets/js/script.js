@@ -2,19 +2,23 @@
 // Constants, variables, elements
 const searchInput = document.getElementById('search');
 const searchBtn = document.querySelector('.search-btn'); 
-const featuredTableEl = document.querySelector("#recipe-table-featured");          //Feature table element
-const resultsTableEl = document.querySelector("#recipe-table-results");            //Recipe results table element
+const featuredTableEl = document.querySelector("#recipe-table-featured");           //Feature table element
+const resultsTableEl = document.querySelector("#recipe-table-results");             //Recipe results table element
 const recipeResultHeading1El = document.querySelector("#recipe-result-heading1");   //Recipe results heading line 1
 const recipeResultHeading2El = document.querySelector("#recipe-result-heading2");   //Recipe results heading line 2
+const nextPageBtnEl = document.getElementsByName("nextPageBtn");                    //Targets both next page button elements
 
-const appKey = "bd89c9d8361609dbed2adb82d1106d40";                                 //Edamam App Key (Mahmoud)
-const appID = "45b75717"                                                           //Edamam Recipe App ID
-var searchTerm = ""                                                                //user entered search Term
+const appKey = "bd89c9d8361609dbed2adb82d1106d40";                                  //Edamam App Key (Mahmoud)
+const appID = "45b75717"                                                            //Edamam Recipe App ID
+var searchTerm = ""                                                                 //user entered search Term
 
-let cuisineTypeEl = document.getElementsByName("cuisineType");                     // Targets all checkboxes on cuisineType
-var cuisineURL = "";                                                               //variable for cuisine url thats empty
+let cuisineTypeEl = document.getElementsByName("cuisineType");                      // Targets all checkboxes on cuisineType
+var cuisineURL = "";                                                                //variable for cuisine url thats empty
 
-let recipeArray = [];                                                              // Core array used to store and retrieve recipes.
+var nextPageURL = "";                                                               // API for the next page
+var recipeAPI_URL = "";                                                             // API used to fetch data from Edamam
+
+let recipeArray = [];                                                               // Core array used to store and retrieve recipes.
 
 //------------------------------------------//
 //- FUNCTION - ASSESS CUISINE TYPE FILTERS -//
@@ -36,21 +40,18 @@ function assessCuisine() {
     console.log ("  URL to append to API fetch = " + cuisineURL);
     console.log ("  Calling fetchRecipes() function");
     console.log (searchTerm)
+    recipeAPI_URL = "https://api.edamam.com/api/recipes/v2?type=public&app_id=" + appID + "&app_key=" + appKey + "&field=uri&field=label&field=image&field=images&field=source&field=url&field=shareAs&field=yield&field=dietLabels&field=healthLabels&field=cautions&field=ingredientLines&field=ingredients&field=calories&field=glycemicIndex&field=totalCO2Emissions&field=co2EmissionsClass&field=totalWeight&field=totalTime&field=cuisineType&field=mealType&field=dishType&field=totalNutrients&field=totalDaily&field=digest&field=tags&field=externalId&q="+ searchTerm + cuisineURL; // API URL
     fetchRecipes();                                        
 }
-
 
 //-------------------------------------//
 //- FUNCTION - FETCH RECIPES FROM API -//
 //-------------------------------------//
 function fetchRecipes() {
     console.log("\n\n\n> fetchRecipes() Called");  
-
-    var recipeUrl = "https://api.edamam.com/api/recipes/v2?type=public&app_id=" + appID + "&app_key=" + appKey + "&field=uri&field=label&field=image&field=images&field=source&field=url&field=shareAs&field=yield&field=dietLabels&field=healthLabels&field=cautions&field=ingredientLines&field=ingredients&field=calories&field=glycemicIndex&field=totalCO2Emissions&field=co2EmissionsClass&field=totalWeight&field=totalTime&field=cuisineType&field=mealType&field=dishType&field=totalNutrients&field=totalDaily&field=digest&field=tags&field=externalId&q="+ searchTerm + cuisineURL;   
-  
-    console.log(recipeUrl)
+    console.log("recipeAPI_URL = " + recipeAPI_URL)
     console.log("  Fetching recipes from edamam...")
-    fetch(recipeUrl)                                                                            // Fetch data from edamam using URL above
+    fetch(recipeAPI_URL)                                                                         // Fetch data from edamam using URL above
         .then(function (response) {
             console.log("  ... recipes received from Edamam.")
             if (response.ok) {                                                                  // Check if response OK             
@@ -80,116 +81,6 @@ function fetchRecipes() {
             alert('Unable to connect to API server');
         });
         return;
-}
-
-
-
-//--------------------------------------------//
-//- Next page button -//
-//--------------------------------------------//
-
-document.getElementsByClassName('nextPageBtn')
- document.addEventListener('click', function(event) { 
-    if (!recipeArray._links.next) {
-        console.log("There isn't a next page");
-    }
-        else {                     
-        console.log("Next page button engaged.");                              
-        event.preventDefault();                                                     
-        console.log(recipeArray._links.next.href);                                 
-        console.log ("Next page URL stored in 'nextPageURL'");                
-        nextPageURL = recipeArray._links.next.href;                                
-        fetchNextPage();
-    
-        
-        
-      
-    }})
-
-    
-    //-------------------------------------//
-    //- FUNCTION - FETCH NEXT PAGE FROM API -//
-    //-------------------------------------//
-    function fetchNextPage() {
-        console.log("\n\n\n> fetchNextPage() Called");                               // fetch next page called console log
-    
-       var recipeUrl = nextPageURL                                                   //assigns the value of recipe url to nextPageUrl
-      
-        console.log(recipeUrl)                                                       // value of recipie url logged to console log
-        console.log("  Fetching recipes from edamam...")                             //console logs message fetching recipies from edamam
-        fetch(recipeUrl)                                                                            // Fetch data from edamam using URL above
-            .then(function (response) {                                                             
-                console.log("  ... recipes received from Edamam.")
-                if (response.ok) {                                                                  // Check if response OK             
-                    response.json().then(function (data) {                                          // Hold API response in 'data'
-                        console.log("  Checking data received:")
-                        console.log("    data.hits.length = " + data.hits.length)
-                        if (data.hits.length === 0) {                                               // Check if 'data.hits' has values. Alert if zero (data.hits is where recipes are returned in the JSON object
-                            console.log("    No recipes found - bad")                               //if no data back, no recipies found. console log.
-                            alert('No recipes were found - please review your search term(s) and try again');              //alert pop up please review search terms
-                            return;
-                        } else {                        
-                            console.log("    Recipes found - good")
-                            console.log("  Sending recipes to local storage ('key = recipes')");                        
-                            recipeArray = data;                                                     // Store the fetched data in recipeArray 
-                            localStorage.setItem('recipes', JSON.stringify(recipeArray));           // STORING FETCHED DATA IN LOCAL STORAGE
-                            console.log("  Storing API data in global variable 'recipeArray'");
-                            console.log("    recipeArray:\n    ------------");                        
-                            console.log(recipeArray);       
-                            displayRecipes();                 
-                        }
-                    });
-                } else {
-                    alert('Error in recipes: ' + response.statusText);
-                }
-            })
-            .catch(function (error) {
-                alert('Unable to connect to API server');
-            });
-            return;
-    }
-
-
-
-//--------------------------------------------//
-//- FUNCTION - FETCH RANDOM RECIPES FROM API -//
-//--------------------------------------------//
-function fetchRandomRecipes() {
-    console.log("\n\n\n> fetchRandomRecipes() Called");  
-
-    var recipeUrl = "https://api.edamam.com/api/recipes/v2?type=public&app_id=" + appID + "&app_key=" + appKey + "&random=true&q=undefined";
- 
-    console.log(recipeUrl)
-    console.log("  Fetching random recipes from edamam...")
-    fetch(recipeUrl)                                                                            // Fetch data from edamam using URL above
-        .then(function (response) {
-            console.log("  ... random recipes received from Edamam.")
-            if (response.ok) {                                                                  // Check if response OK             
-                response.json().then(function (data) {                                          // Hold API response in 'data'
-                    console.log("  Checking data received:")
-                    console.log("    data.hits.length = " + data.hits.length)
-                    if (data.hits.length === 0) {                                               // Check if 'data.hits' has values. Alert if zero (data.hits is where recipes are returned in the JSON object
-                        console.log("    No recipes found - bad")
-                        alert('No recipes were found - please review your search term(s) and try again');                        
-                        return;
-                    } else {                        
-                        console.log("    Recipes found - good")
-                        console.log("  Sending recipes to local storage ('key = recipes')");                        
-                        recipeArray = data;                                                     // Store the fetched data in recipeArray 
-                        localStorage.setItem('recipes', JSON.stringify(recipeArray));           // STORING FETCHED DATA IN LOCAL STORAGE
-                        console.log("  Storing API data in global variable 'recipeArray'");
-                        console.log("    recipeArray:\n    ------------");                        
-                        console.log(recipeArray);       
-                        displayRecipes();                 
-                    }
-                });
-            } else {
-                alert('Error in recipes: ' + response.statusText);
-            }
-        })
-        .catch(function (error) {
-            alert('Unable to connect to API server');
-        });
 }
 
 //------------------------------//
@@ -355,7 +246,20 @@ function displayRecipes() {
                                 recipeSourceEl.classList.add ("recipe-source", "mt-5", "flex", "justify-end");                                                                         // Add class (tailwind style)
                                 recipeSourceEl.textContent = "Recipe Source: " + recipeArray.hits[i].recipe.source;                                     // Add source text      
                                 recipeSourceContainerEl.appendChild(recipeSourceEl);                                                                    // Append Recipe Source to recipeDetailContainer
-
+    }
+    if (recipeArray._links.next) {
+        console.log ("  Next link OK: " + recipeArray._links.next.href)
+        console.log ("  Showing 'next' buttons")
+        nextPageBtnEl.forEach(function(nextButton)
+        {
+            nextButton.style.display = "block"            
+        });
+    } else {
+        console.log ("  There is no next link available - hiding 'next' buttons");                            // Hide the next button if there is no next link        
+        nextPageBtnEl.forEach(function(nextButton)
+        {
+            nextButton.style.display = "none"            
+        });        
     }
 };
 
@@ -398,13 +302,32 @@ searchInput.addEventListener('keydown', function (event) {                   // 
     }
 });
 
+//-------------------------------//
+//- LISTENER - NEXT PAGE BUTTON -//
+//-------------------------------//
+
+nextPageBtnEl.forEach(function(nextButton) {                                     // Loop through and add an event listener to each element captured by nextPageBtnEl (This is an array of two buttons)
+    nextButton.addEventListener('click', function(event) { 
+        console.log("\n\n\n! Next Page button click triggered");  
+        if (!recipeArray._links.next) {
+            console.log("   There isn't a next page");
+        }
+            else {                                         
+            console.log("  Next page API URL: " + recipeArray._links.next.href);                                 
+            console.log ("  Next page API URL stored in 'recipeAPI_URL'");
+            recipeAPI_URL = recipeArray._links.next.href;                       // Set Recipe API URL to the Next Page URL
+            fetchRecipes();
+        }
+    });
+});
+
 //--------------------------------------------------------------//
 //- LISTENER - PAGE LOAD - RETRIEVE RECIPES FROM LOCAL STORAGE -//
 //--------------------------------------------------------------//
 
 window.addEventListener('load', function () {                                               // Event listener that triggers on page load
     console.log("\n\n\n! Page load triggered");      
-    const savedRecipes = localStorage.getItem('recipes');                                   // retrieve dat fro local storage ('key = recipes') - store as savedRecipes
+    const savedRecipes = localStorage.getItem('recipes');                                   // retrieve data from local storage ('key = recipes') - store as savedRecipes
     if (savedRecipes) {                                                                     // If savedRecipes is not null or undefined, then
         recipeArray = JSON.parse(savedRecipes);                                             // convert to JSON object and store as recipeArray
         console.log("  RETURNING VISITOR: Welcome back! Retrieving recipes from last time")
@@ -420,7 +343,9 @@ window.addEventListener('load', function () {                                   
         console.log("  NEW VISITOR: Hello and Welcome! Fetching random recipes")                         
         recipeResultHeading1El.textContent = "Hello and Welcome to our page!"               // Set recipe results subtitle to "New visitor" message
         recipeResultHeading2El.textContent = "Here are some recipes to get you started!"    // Set recipe results subtitle to "New visitor" message
-        fetchRandomRecipes();
+        console.log ("  Random Recipe API URL stored in 'recipeAPI_URL'");
+        recipeAPI_URL = "https://api.edamam.com/api/recipes/v2?type=public&app_id=" + appID + "&app_key=" + appKey + "&random=true&q=undefined";        // Random Recipe API URL
+        fetchRecipes();
         return;
     };                                                     
 });
@@ -480,9 +405,9 @@ moonIcon.addEventListener("click", () => {
 // THEME CHECK ON LOAD
 themeCheck();
 
-//---------------------//
-//- GOOGLE TRANSLATE  -//
-//---------------------//
+//-------------------------//
+//- GOOGLE TRANSLATE API  -//
+//-------------------------//
 
 function googleTranslateElementInit(){
     new google.translate.TranslateElement(
