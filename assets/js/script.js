@@ -22,6 +22,8 @@ var recipeAPI_URL = "";                                                         
 
 let recipeArray = [];                                                               //Core array used to store and retrieve recipes.
 
+let imageArray = [];
+
 //------------------------------------------//
 //- FUNCTION - ASSESS CUISINE TYPE FILTERS -//
 //------------------------------------------//
@@ -103,7 +105,7 @@ function displayRecipes() {
         };
 
         var recipeContainerEl = document.createElement('li');                                                                                             // Create recipe container (li) - this will be appended to main 'ul" container (resutlsTableEl)
-        recipeContainerEl.classList.add ("recipe-container", "border-8", "rounded-3xl", "flex", "flex-wrap", "m-5", "border-emerald-400");                // Add class (tailwind style)
+        recipeContainerEl.classList.add ("recipe-container", "border-8", "rounded-3xl", "flex", "flex-wrap", "m-5", "border-emerald-400", "bg-white", "dark:bg-slate-900");                // Add class (tailwind style)
         resultsTableEl.appendChild(recipeContainerEl);                                                                                                    // Append recipeContinerEl to resultsTableEl
 
                 var linkContainerEl = document.createElement('div');                                                                                      // Create link container - one of 2 child element to recipe container
@@ -440,3 +442,38 @@ function googleTranslateElementInit(){
         'google_translate_element'
     );
 }
+
+
+
+function findHeroImages(){
+
+    let pexelKey = "vcMDr6XYTzH4WhSt0G6i6mA3GbsAp020BUFhp6glUHJcSfAa9F5BEwKB"
+  
+    $.ajax({
+        method: 'GET',
+        beforeSend: function (xhr) {
+            xhr.setRequestHeader ("Authorization", pexelKey);
+        },
+        url: "https://api.pexels.com/v1/search?query=food",
+        success: function (data) {
+          const imageArray = data
+          console.log(imageArray)
+          var i= (Math.floor(Math.random()*imageArray.photos.length))
+          console.log(i)
+          var img = imageArray.photos[i].src.large
+          var imgInput = JSON.stringify(img)
+          console.log(imgInput)
+            var bg = document.getElementById("backg-img")
+            bg.style.backgroundImage = "url("+ imgInput +")"
+
+        }
+
+        
+    })
+    
+  }
+
+  
+
+  
+  $(window).on("load", findHeroImages)
