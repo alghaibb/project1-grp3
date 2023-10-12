@@ -4,12 +4,10 @@
 
 ## Description
 
-Project1-grp3 and is hosted on GitHub. It contains the code for Project One by Group 3. The purpose of our application, is a recipies search engine.
+<b>Food Haven</b> is hosted on GitHub. It contains the code for <b>Project One by Group 3</b>. The purpose of our application, is a recipies search engine.
 It can filter by multiple cuisine types and requires a key word in the search engine. It was built simply to cater to a wide range of audiences all over the world.
 The project is a web application that allows users to search for recipes based on word search, filters, stores the previous search to local storage,
 to then be displayed on the next visit to the website and content on the page can be translated to over 100 languages.
-
-The repository contains an index.html file, CSS, and JavaScript code required to run the application.
 
 ## User Story
 
@@ -61,11 +59,15 @@ The below is a screenshot gif of the web application's appearance and some of it
 
 ## Installation
 
-Cloning the repo is the only step required.
+- Clone the repository to your local machine using the following command:
 
-Clone this repository to your local machine.
+    ```bash
 
-https://github.com/alghaibb/project1-grp3.git
+    HTTPS - git clone https://github.com/alghaibb/project1-grp3.git
+
+    SSH - git clone git@github.com:alghaibb/project1-grp3.git
+
+    gh repo clone alghaibb/project1-grp3
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -73,7 +75,9 @@ https://github.com/alghaibb/project1-grp3.git
 - HTML
 - CSS
 - JavaScript
-- Tailwind CSS
+- jQuery 
+- Tailwind CSS/Flowbite CSS
+- Edmam API/Google translate API/Pexels API
 
 
 ## Usage
@@ -96,10 +100,10 @@ index.html, script.js and style.css files can be opened in Visual Studio Code
  
 
 ## Contributors
-CONTRIBUTOR_ALGHAIBB Moudi
-CONTRIBUTOR_HYBEE234
-CONTRIBUTOR_T-P15
-CONTRIBUTOR_DYL124
+<a href="https://github.com/hybee234">- Hybee234</a><br>
+<a href="https://github.com/T-P15">- T-P15</a><br>
+<a href="https://github.com/dy124">- dyl124</a><br>
+<a href="https://github.com/alghaibb">- alghaibb</a>
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -108,11 +112,6 @@ CONTRIBUTOR_DYL124
 This project is licensed under the MIT License.
 
 
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-
-## Badges
-
-N/A
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 ## Features
@@ -124,20 +123,19 @@ N/A
 * Recipe will hide the total time if data is not available from Edamam
 * Next page functionality to retrieve the next 20 recipes
 * Next page buttons will be hidden if there are no further pages to navigate to.
-* Dark mode functionality
+* Light to dark mode functionality
 * Cuisine filter that restrict results that are returned from Edamam (multi-select box)
 * Google Translate embedded into the page
-
-
+* Added dynamic background images using <a href="https://www.pexels.com/api/">Pexel API</a> that change after every refresh
 * Links to Edamam website
 * Links to GitHub pages for members of group 3
-
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 ## How to Contribute
 
 N/A
+
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 ## Tests
