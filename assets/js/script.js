@@ -368,52 +368,67 @@ window.addEventListener('load', function () {                                   
 const sunIcon = document.querySelector(".sun");
 const moonIcon = document.querySelector(".moon");
 
-// THEME VARS
-const userTheme = localStorage.getItem("theme");
-const systemTheme = window.matchMedia("(prefers-color-scheme: dark)").matches;
+// - THEME VARS - //
 
-// TOGGLING THE ICONS
+// Get user's preferred theme from local storage
+const userTheme = localStorage.getItem("theme"); 
+// Check if the system prefers dark mode
+const systemTheme = window.matchMedia("(prefers-color-scheme: dark)").matches; 
+
+// - TOGGLING THE ICONS - //
 const iconToggle = () => {
+    // Toggle the 'display-none' class on moonIcon
     moonIcon.classList.toggle("display-none");
+    // Toggle the 'display-none' class on sunIcon
     sunIcon.classList.toggle("display-none");
 };
 
-// THEME CHECK
+// - THEME CHECK - //
 const themeCheck = () => {
     if (userTheme ===  "dark" || (!userTheme && systemTheme)) {
-        document.documentElement.classList.add("dark");
-        moonIcon.classList.add("display-none");
+        // If user prefers dark mode or no preference with system preferring dark mode:
+        document.documentElement.classList.add("dark"); // Add 'dark' class to the document root
+        moonIcon.classList.add("display-none"); // Hide moon icon
         return;
     }
-    sunIcon.classList.add("display-none")
+    sunIcon.classList.add("display-none") // Hide sun icon
 };
 
-// MANUAL THEME SWITCH
+// - MANUAL THEME SWITCH - //
 const themeSwitch = () => {
+    // If currently in dark mode:
     if (document.documentElement.classList.contains("dark")) {
-        document.documentElement.classList.remove("dark");
-        localStorage.setItem("theme", "light");
+        // Remove 'dark' class from the document root
+        document.documentElement.classList.remove("dark"); 
+        // Store 'light' theme in local storage
+        localStorage.setItem("theme", "light"); 
+        // Toggle icons to show the sun icon
         iconToggle();
         return;
     }
+    // Switch to dark mode by adding 'dark' class to the document root
     document.documentElement.classList.add("dark");
+    // Store 'dark' theme in local storage
     localStorage.setItem("theme", "dark");
+    // Toggle icons to show the moon icon
     iconToggle();
 };
 
-// CALL THEME SWITCH ON CLICK
+// - CALL THEME SWITCH ON CLICK - //
 sunIcon.addEventListener("click", () => {
     console.log("Switched to light mode")
+    // Call the themeSwitch function to switch to light mode
     themeSwitch();
 });
 
 moonIcon.addEventListener("click", () => {
     console.log("Switched to dark mode")
+    // Call the themeSwitch function to switch to dark mode
     themeSwitch();
 });
 
-// THEME CHECK ON LOAD
-themeCheck();
+// - THEME CHECK ON LOAD - //
+themeCheck(); // Check the theme preference when the page loads
 
 //-------------------------//
 //- GOOGLE TRANSLATE API  -//
